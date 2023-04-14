@@ -28,10 +28,10 @@
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding UserName}" TextColor="Black" Grid.Row="0" Grid.Column="0"/>
-                                    <Label Text="{Binding UserLogin}" TextColor="Black" Grid.Row="1" Grid.Column="0"/>
-                                    <Label Text="{Binding UserPassword}" TextColor="Black" Grid.Row="2" Grid.Column="0"/>
-                                    <Label Text="{Binding fkLanguage}" TextColor="Black" Grid.Row="3" Grid.Column="0"/>
+                                    <Label Text="{Binding fkItem}" TextColor="Black" Grid.Row="0" Grid.Column="0"/>
+                                    <Label Text="{Binding fkTransctription}" TextColor="Black" Grid.Row="1" Grid.Column="0"/>
+                                    <Label Text="{Binding fkItemRu}" TextColor="Black" Grid.Row="2" Grid.Column="0"/>
+                                   
                                     <Button Text="Delete" Background="red" Style="{StaticResource regBtn}" CommandParameter="{Binding .}" Clicked="Button_Clicked" Grid.RowSpan="3" Grid.Column="1"/>
                                 </Grid>
                             </Frame>

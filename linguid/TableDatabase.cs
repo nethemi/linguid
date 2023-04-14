@@ -75,7 +75,7 @@ namespace linguid
         [PrimaryKey, AutoIncrement, Column("TranscriptionID")]
         public int TranscriptionID { get; set; }
 
-        public string TranscriptionItem { get; set; }
+        public string TransctriptionItem { get; set; }
     }
 
     [Table("Meaning")]
@@ -86,7 +86,7 @@ namespace linguid
 
         public int fkItem { get; set; }
 
-        public int fkTranscription { get; set; }
+        public int fkTransctription { get; set; }
 
         public int fkItemRu { get; set; }
     }
@@ -108,7 +108,7 @@ namespace linguid
 
         public int fkCategory { get; set; }
 
-        public int fkMeaningFk { get; set; }
+        public int fkMeaning { get; set; }
 
     }
 
