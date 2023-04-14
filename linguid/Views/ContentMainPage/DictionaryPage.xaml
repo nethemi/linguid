@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="linguid.Views.ContentMainPage.DictionaryPage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:dxg="http://schemas.devexpress.com/xamarin/2014/forms/datagrid"
+             xmlns:local="clr-namespace:linguid;assembly=linguid"
+             NavigationPage.HasNavigationBar="False"
+             Background="white">
+    
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                         VerticalOptions="StartAndExpand"
+                         Padding="10"
+                     xct:ShadowEffect.Color="Black"
+                     xct:ShadowEffect.OffsetY="0"   
+                     xct:ShadowEffect.Radius="1">
+            
+            <Frame Style="{StaticResource loginBoxes}" CornerRadius="15" WidthRequest="500" HeightRequest="60">
+                <SearchBar Style="{StaticResource searchBox}" />
+            </Frame>
+
+            <Label Style="{StaticResource titleTxt}" Text="Недавно просмотренные" HorizontalOptions="StartAndExpand" Padding="5"/>
+
+            <CollectionView x:Name="dictionatyView">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10,0,15,10">
+                            <Frame HasShadow="True"
+                                   xct:ShadowEffect.Color="Black"
+                                   xct:ShadowEffect.OffsetY="0"
+                                   xct:ShadowEffect.Radius="4"
+                                   HeightRequest="100"
+                                   CornerRadius="15"
+                                   BackgroundColor="#F1F3F4">
+                                <Grid RowSpacing="5">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Style="{StaticResource gridTxt}" Text="{Binding Item}" Grid.Row="0" Grid.Column="0"/>
+                                    <Label Style="{StaticResource gridTxt}" Text="{Binding Transctiption}" Grid.Row="1" Grid.Column="0"/>
+                                    <Label Style="{StaticResource gridTxt}" Text="{Binding ItemRU}" Grid.Row="2" Grid.Column="0"/>
+                                    <ImageButton Source="{local:ImageResource linguid.Images.favorite.png}" 
+                                                 WidthRequest="40" 
+                                                 HeightRequest="40" 
+                                                 Grid.Column="1" 
+                                                 Grid.RowSpan="3" 
+                                                 HorizontalOptions="Center" 
+                                                 VerticalOptions="Center"/>
+                                    <ImageButton Source="{local:ImageResource linguid.Images.edit.png}" 
+                                                 WidthRequest="40" 
+                                                 HeightRequest="40" 
+                                                 Grid.Column="2" 
+                                                 Grid.RowSpan="3" 
+                                                 HorizontalOptions="Center" 
+                                                 VerticalOptions="Center"/>
+                                    <ImageButton Source="{local:ImageResource linguid.Images.trash.png}" 
+                                                 WidthRequest="40" 
+                                                 HeightRequest="40" 
+                                                 Grid.Column="3" 
+                                                 Grid.RowSpan="3" 
+                                                 HorizontalOptions="Center" 
+                                                 VerticalOptions="Center"/>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

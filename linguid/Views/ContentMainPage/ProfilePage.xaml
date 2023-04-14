@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="linguid.Views.ContentMainPage.ProfilePage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             NavigationPage.HasNavigationBar="False"
+             Background="white">
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                     VerticalOptions="StartAndExpand"
+                     xct:ShadowEffect.Color="Black"
+                     xct:ShadowEffect.OffsetY="0"   
+                     xct:ShadowEffect.Radius="1">
+            
+            <StackLayout Orientation="Vertical" x:Name="noUser" IsVisible="false" Margin="0,100,0,220">
+                <Button Style="{StaticResource choiceBtn}"
+                        xct:ShadowEffect.Color="Black"
+                        xct:ShadowEffect.OffsetY="15"   
+                        xct:ShadowEffect.Radius="5"
+                        Margin="20,5,20,5"
+                        HeightRequest="45"
+                        Text="Изменить язык"
+                        TextColor="#000000"
+                        Clicked="ChoiceClicked"/>
+
+                <Label Style="{StaticResource titleTxt}" Text="Войдите в профиль,чтобы получить полный доступ" HorizontalOptions="Center" Margin="0,80,0,10"/>
+                <Button Style="{StaticResource mainBtn}"
+                HorizontalOptions="Center"
+                Text="ВОЙТИ"
+                WidthRequest="122"
+                Background="#6C19FF"
+                BorderColor="#6C19FF"
+                TextColor="#ffffff"
+                Clicked="ExitClicked"/>
+                <Grid Grid.Row="5" Padding="10" WidthRequest="300">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition Width="*" />
+                        <ColumnDefinition Width="Auto" />
+                        <ColumnDefinition Width="*" />
+                    </Grid.ColumnDefinitions>
+                    <Label BackgroundColor="#bababa" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                    <Label Text="или" Grid.Column="1" VerticalOptions="Center" Margin="10,0,10,0" TextColor="#bababa" />
+                    <Label BackgroundColor="#bababa" Grid.Column="2" HeightRequest="1" HorizontalOptions="FillAndExpand" VerticalOptions="Center" />
+                </Grid>
+
+                <Button Style="{StaticResource mainBtn}" Text="ЗАРЕГИСТРИРУЙТЕСЬ" HorizontalOptions="Center" WidthRequest="265" 
+                Clicked="RegClick"/>
+            </StackLayout>
+
+            <StackLayout Orientation="Vertical"
+                         Margin="0,120,0,180"
+                         x:Name="profileInfo">
+
+                <Label Style="{StaticResource titleTxt}" Text="{Binding UserName}" HorizontalOptions="Center" x:Name="userName"/>
+                <Label Style="{StaticResource normalTxt}" Text="{Binding UserLogin}" FontSize="16" x:Name="loginUser"/>
+
+                <Button Style="{StaticResource choiceBtn}"
+                        xct:ShadowEffect.Color="Black"
+                        xct:ShadowEffect.OffsetY="15"
+                        xct:ShadowEffect.Radius="5"
+                        Margin="20,10,20,5"
+                        HeightRequest="45"
+                        Text="Изменить пароль"
+                        TextColor="#000000"
+                        Clicked="ChangePasswordClicked"/>
+
+                <Button Style="{StaticResource choiceBtn}"
+                        xct:ShadowEffect.Color="Black"
+                        xct:ShadowEffect.OffsetY="15"   
+                        xct:ShadowEffect.Radius="5"
+                        Margin="20,5,20,5"
+                        HeightRequest="45"
+                        Text="Изменить имя"
+                        TextColor="#000000"
+                        Clicked="ChangeNameClicked"/>
+
+                <Button Style="{StaticResource choiceBtn}"
+                        xct:ShadowEffect.Color="Black"
+                        xct:ShadowEffect.OffsetY="15"   
+                        xct:ShadowEffect.Radius="5"
+                        Margin="20,5,20,5"
+                        HeightRequest="45"
+                        Text="История уроков"
+                        TextColor="#000000"
+                        Clicked="HistoryClicked"/>
+
+                <Button Style="{StaticResource choiceBtn}"
+                        xct:ShadowEffect.Color="Black"
+                        xct:ShadowEffect.OffsetY="15"   
+                        xct:ShadowEffect.Radius="5"
+                        Margin="20,5,20,5"
+                        HeightRequest="45"
+                        Text="Изменить язык"
+                        TextColor="#000000"
+                        Clicked="ChoiceClicked"/>
+
+                <Button Style="{StaticResource choiceBtn}"
+                        xct:ShadowEffect.Color="Black"
+                        xct:ShadowEffect.OffsetY="15"   
+                        xct:ShadowEffect.Radius="5"
+                        Margin="20,5,20,5"
+                        HeightRequest="45"
+                        Text="Добавить данные"
+                        TextColor="#000000"
+                        x:Name="addBtn"
+                        IsVisible="false"
+                        Clicked="AddClicked"/>
+
+                <Button Style="{StaticResource mainBtn}"
+                HorizontalOptions="Center"
+                Text="Выйти"
+                WidthRequest="300"
+                CornerRadius="15"
+                BorderColor="#000000"
+                TextColor="#000000"
+                Margin="0,10,0,0"
+                Clicked="ExitClicked"/>
+            </StackLayout>
+            
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

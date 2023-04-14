@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="linguid.Views.ContentMainPage.StartLessonPage"
+             xmlns:dxg="http://schemas.devexpress.com/xamarin/2014/forms/datagrid"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             NavigationPage.HasNavigationBar="False"
+             Background="white">
+    
+    <ContentPage.Content>
+        <StackLayout xct:ShadowEffect.Color="Black"
+                         xct:ShadowEffect.OffsetY="0"   
+                         xct:ShadowEffect.Radius="1"
+                     Padding="10">
+            
+            <StackLayout Orientation="Horizontal">
+                <Label Style="{StaticResource titleTxt}" Text="Lesson" HorizontalOptions="StartAndExpand" Padding="5"/>
+                <Button Style="{StaticResource mainBtn}"
+                HorizontalOptions="EndAndExpand"
+                Text="Начать урок"
+                WidthRequest="123"
+                Background="#6C19FF"
+                BorderColor="#6C19FF"
+                TextColor="#ffffff"
+                Margin="0,0,5,0"/>
+            </StackLayout>
+
+          
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,28 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="linguid.Views.ContentMainPage.LessonPage"  
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             NavigationPage.HasNavigationBar="False"
+             Background="white">
+
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                     VerticalOptions="StartAndExpand"
+                     Padding="10"
+                     xct:ShadowEffect.Color="Black"
+                     xct:ShadowEffect.OffsetY="0"   
+                     xct:ShadowEffect.Radius="1">
+
+            <Label Style="{StaticResource titleTxt}" Text="Уроки" HorizontalOptions="StartAndExpand" Padding="5"/>
+            <Label Text="Выберите категорию" 
+                       Style="{StaticResource normalTxt}"
+                       FontSize="16"     
+                       HorizontalOptions="StartAndExpand" Padding="5,0"/>
+
+            <Button Style="{StaticResource choiceBtn}" Text="test" Margin="10,10,10,10"
+                    Clicked="Button_Clicked"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

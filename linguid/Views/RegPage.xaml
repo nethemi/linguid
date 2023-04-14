@@ -1,0 +1,76 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="linguid.Views.RegPage"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.IconColor="Black"
+             BackgroundColor="White"
+             xmlns:dxe="http://schemas.devexpress.com/xamarin/2014/forms/editors">
+
+    <ContentPage.Content>
+        <StackLayout>
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Регистрация" Style="{StaticResource titleTxt}" Padding="20,20,0,10"/>
+            </StackLayout>
+            
+            <StackLayout Orientation="Horizontal" HorizontalOptions="FillAndExpand">
+                <Label Text="Заполните поля" Style="{StaticResource normalTxt}" Padding="20,0,0,5" FontSize="16"/>
+            </StackLayout>
+
+            <dxe:TextEdit  x:Name="userName"
+              IsLabelFloating = "False"
+              LabelText="Имя"
+              LabelColor="#666666"
+              LabelFontSize="14"
+              FocusedLabelColor="#404040"
+              BorderColor="#666666"
+              FocusedBorderColor="#a5a5a5"
+              Margin="15,5,15,5"/>
+
+            <dxe:TextEdit  x:Name="userLogin"
+              IsLabelFloating = "False"
+              LabelText="Логин"
+              LabelColor="#666666"
+              LabelFontSize="14"
+              FocusedLabelColor="#404040"
+              BorderColor="#666666"
+              FocusedBorderColor="#a5a5a5"
+              Margin="15,0,15,5"/>
+
+            <dxe:PasswordEdit IsLabelFloating="False"
+                              x:Name="userPass"
+                              PasswordIconVisibility="Auto"
+                              LabelText="Пароль"
+                              LabelColor="#6C19FF"
+                              LabelFontSize="14"
+                              FocusedLabelColor="#6C19FF"
+                              BorderColor="#6C19FF"
+                              FocusedBorderColor="#6C19FF"
+                              BottomTextTopIndent="5"
+                              Margin="15,0,15,5" />
+
+            <dxe:PasswordEdit IsLabelFloating="False"
+                              x:Name="checkPass"
+                              PasswordIconVisibility="Auto"
+                              LabelText="Повторите пароль"
+                              LabelColor="#6C19FF"
+                              LabelFontSize="14"
+                              FocusedLabelColor="#6C19FF"
+                              BorderColor="#6C19FF"
+                              FocusedBorderColor="#6C19FF"
+                              Margin="15,0,15,0"/>
+
+
+            <Button Style="{StaticResource mainBtn}"
+                    Text="Зарегистрироваться"
+                    WidthRequest="321" 
+                    HeightRequest="50"
+                    Background="#6C19FF"
+                    BorderColor="#6C19FF"
+                    TextColor="#ffffff"
+                    Clicked="NextBtnClick"
+                    Margin="30"/>
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

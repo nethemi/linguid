@@ -1,0 +1,68 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<TabbedPage xmlns="http://xamarin.com/schemas/2014/forms"
+            xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+            x:Class="linguid.Views.MainPage"
+            xmlns:content="clr-namespace:linguid.Views.ContentMainPage"
+            xmlns:local="clr-namespace:linguid;assembly=linguid"
+            xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+            xmlns:android="clr-namespace:Xamarin.Forms.PlatformConfiguration.AndroidSpecific;assembly=Xamarin.Forms.Core"
+            android:TabbedPage.ToolbarPlacement="Bottom"
+            android:TabbedPage.IsSwipePagingEnabled="False"
+            BarBackgroundColor="#6C19FF"
+            SelectedTabColor="#ffffff"
+            UnselectedTabColor="#C4A3FF"
+            NavigationPage.HasBackButton="False"
+            Background="#ffffff">
+
+    <NavigationPage.TitleView>
+        <StackLayout Orientation="Horizontal">
+            <Image Source="{local:ImageResource linguid.Images.logo.png}" WidthRequest="40" HeightRequest="40"/>
+            <Label Style="{StaticResource logoTxt}" Text="ling" FontAttributes="Bold">
+                <Label.FormattedText>
+                    <FormattedString>
+                        <Span Text="ling" TextColor="#6C19FF"/>
+                        <Span Text="uid" TextColor="Black"/>
+                    </FormattedString>
+                </Label.FormattedText>
+            </Label>
+
+            <Frame Style="{StaticResource loginBoxes}" CornerRadius="25"
+                   HorizontalOptions="EndAndExpand"
+                   WidthRequest="135"
+                   HeightRequest="20"
+                   Margin="0,5,10,5"
+                   x:Name="language">
+                <StackLayout Orientation="Horizontal" HorizontalOptions="CenterAndExpand">
+                    <Image x:Name="lang" WidthRequest="20" HeightRequest="20"/>
+                    <Label Style="{StaticResource normalTxt}" x:Name="languageName" TextColor="#9E9E9E"/>
+                </StackLayout>
+            </Frame>
+        </StackLayout>
+    </NavigationPage.TitleView>
+
+
+    <TabbedPage.Children>
+
+        <!--Dictionary-->
+        <content:DictionaryPage Title="Главная" IconImageSource="{local:ImageResource linguid.Images.home.png}"/>
+
+        <!--Favorite-->
+        <content:FavoritePage x:Name="favoritePage" Title="Избранное" IconImageSource="{local:ImageResource linguid.Images.favorite.png}"/>
+
+        <!--Lessons-->
+        <NavigationPage x:Name="lessonsPage" Title="Уроки" IconImageSource="{local:ImageResource linguid.Images.lessons.png}">
+            <x:Arguments>
+                <content:LessonPage />
+            </x:Arguments>
+        </NavigationPage>
+
+        <!--Profile-->
+        <NavigationPage Title="Профиль" IconImageSource="{local:ImageResource linguid.Images.profile.png}">
+            <x:Arguments>
+                <content:ProfilePage/>
+            </x:Arguments>
+        </NavigationPage>
+
+    </TabbedPage.Children>
+
+</TabbedPage>

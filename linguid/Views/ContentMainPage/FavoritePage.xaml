@@ -1,0 +1,23 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="linguid.Views.ContentMainPage.FavoritePage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
+             xmlns:dxg="http://schemas.devexpress.com/xamarin/2014/forms/datagrid"
+             NavigationPage.HasNavigationBar="False"
+             Background="white">
+    
+    <ContentPage.Content>
+        <StackLayout Orientation="Vertical"
+                         VerticalOptions="StartAndExpand"
+                         Padding="10"
+                         xct:ShadowEffect.Color="Black"
+                         xct:ShadowEffect.OffsetY="0"   
+                         xct:ShadowEffect.Radius="1">
+            <Label Style="{StaticResource titleTxt}" Text="Избранное" HorizontalOptions="StartAndExpand" Padding="5"/>
+
+          
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,74 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="linguid.Views.ContentMainPage.AddDataPage"
+             NavigationPage.HasNavigationBar="True"
+             NavigationPage.IconColor="Black"
+             BackgroundColor="White"
+             xmlns:dxe="http://schemas.devexpress.com/xamarin/2014/forms/editors">
+    
+    <ContentPage.Content>
+        <StackLayout>
+
+            <dxe:ComboBoxEdit LabelText="Язык"
+                              x:Name="choiceLang"
+                              IsLabelFloating="True"
+                              LabelColor="#666666"
+                              LabelFontSize="16"
+                              FocusedLabelColor="#404040"
+                              BorderColor="#666666"
+                              FocusedBorderColor="#a5a5a5"
+                              ItemsSource="{Binding}"
+                              DisplayMember="LanguageName"
+                              Margin="15,0,15,5">
+            </dxe:ComboBoxEdit>
+
+            <dxe:TextEdit IsLabelFloating = "True"
+              LabelText="Слово или фраза"
+              LabelColor="#666666"
+              LabelFontSize="16"
+              FocusedLabelColor="#404040"
+              BorderColor="#666666"
+              FocusedBorderColor="#a5a5a5"
+              Margin="15,0,15,5" />
+
+            <dxe:TextEdit IsLabelFloating = "True"
+              LabelText="Транскрипция"
+              LabelColor="#666666"
+              LabelFontSize="16"
+              FocusedLabelColor="#404040"
+              BorderColor="#666666"
+              FocusedBorderColor="#a5a5a5"
+              Margin="15,0,15,5" />
+
+            <dxe:TextEdit IsLabelFloating = "True"
+              LabelText="Перевод"
+              LabelColor="#666666"
+              LabelFontSize="16"
+              FocusedLabelColor="#404040"
+              BorderColor="#666666"
+              FocusedBorderColor="#a5a5a5"
+              Margin="15,0,15,5" />
+
+            <dxe:TextEdit IsLabelFloating = "True"
+              LabelText="Категория"
+              LabelColor="#666666"
+              LabelFontSize="16"
+              FocusedLabelColor="#404040"
+              BorderColor="#666666"
+              FocusedBorderColor="#a5a5a5"
+              Margin="15,0,15,5" />
+
+            <Button Style="{StaticResource mainBtn}"
+                    Text="Добавить"
+                    WidthRequest="321" 
+                    HeightRequest="50"
+                    Background="#6C19FF"
+                    BorderColor="#6C19FF"
+                    TextColor="#ffffff"
+                    Margin="30"/>
+
+
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ResourceDictionary xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml">
+
+    <Style x:Key="authEntry" TargetType="Entry">
+        <Setter Property="WidthRequest" Value="265"/>
+        <Setter Property="PlaceholderColor" Value="#bababa"/>
+        <Setter Property="FontSize" Value="16"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="TextColor" Value="Black"/>
+        <Setter Property="Margin" Value="10,0"/>
+    </Style>
+
+    <Style x:Key="loginBoxes" TargetType="Frame">
+        <Setter Property="BackgroundColor" Value="Transparent"/>
+        <Setter Property="BorderColor" Value="DarkGray"/>
+        <Setter Property="Padding" Value="0"/>
+        <Setter Property="CornerRadius" Value="4"/>
+        <Setter Property="HorizontalOptions" Value="Center"/>
+        <Setter Property="HeightRequest" Value="48"/>
+    </Style>
+
+    <Style TargetType="NavigationPage">
+        <Setter Property="BarBackgroundColor" Value="White"/>
+        <Setter Property="BarTextColor" Value="Black"/>
+    </Style>
+
+
+</ResourceDictionary>
