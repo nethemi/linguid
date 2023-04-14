@@ -17,9 +17,14 @@ namespace linguid.Views.ContentMainPage
 			InitializeComponent ();
 		}
 
-        private async void Button_Clicked(object sender, EventArgs e)
+        protected override async void OnAppearing()
         {
-			await Navigation.PushAsync(new StartLessonPage());
+            // создание таблицы, если ее нет
+            await App.Database.CreateCategory();
+            // привязка данных
+            categoryView.ItemsSource = await App.Database.GetCategoryAsync();
+
+            base.OnAppearing();
         }
     }
 }

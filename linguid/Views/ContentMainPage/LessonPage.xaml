@@ -18,10 +18,28 @@
             <Label Text="Выберите категорию" 
                        Style="{StaticResource normalTxt}"
                        FontSize="16"     
-                       HorizontalOptions="StartAndExpand" Padding="5,0"/>
+                       HorizontalOptions="StartAndExpand" Padding="5,0,0,10"/>
 
-            <Button Style="{StaticResource choiceBtn}" Text="test" Margin="10,10,10,10"
-                    Clicked="Button_Clicked"/>
+            <CollectionView x:Name="categoryView" ItemsSource="{Binding}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10,0,15,10">
+                            <Frame HasShadow="True"
+                             xct:ShadowEffect.Color="Black"
+                             xct:ShadowEffect.OffsetY="0"   
+                             xct:ShadowEffect.Radius="7"
+                             HeightRequest="50"
+                             CornerRadius="15" 
+                             BackgroundColor="#F1F3F4" 
+                             HorizontalOptions="Fill" >
+
+                                <Label Text="{Binding CategoryName}" Style="{StaticResource titleTxt}" />
+
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
 
         </StackLayout>
     </ContentPage.Content>
