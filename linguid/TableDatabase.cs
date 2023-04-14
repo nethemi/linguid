@@ -44,10 +44,8 @@ namespace linguid
         [PrimaryKey, AutoIncrement, Column("UbR")]
         public int UbR { get; set; }
 
-        [ForeignKey(typeof(User)), Column("fkUser"), NotNull]
         public int fkUser { get; set; }
 
-        [ForeignKey(typeof(Role)), Column("fkRole"), NotNull]
         public int fkRole { get; set; }
     }
 
@@ -57,10 +55,8 @@ namespace linguid
         [PrimaryKey, AutoIncrement, Column("ItemID")]
         public int ItemID { get; set; }
 
-        [Column("Item"), NotNull]
         public string Item { get; set; }
 
-        [ForeignKey(typeof(Language)), Column("fkLanguage"), NotNull]
         public int fkLanguage { get; set; }
     }
 
@@ -70,7 +66,6 @@ namespace linguid
         [PrimaryKey, AutoIncrement, Column("ItemRuID")]
         public int ItemRuID { get; set; }
 
-        [Column("ItemRu"), NotNull]
         public string ItemRu { get; set; }
     }
 
@@ -80,7 +75,6 @@ namespace linguid
         [PrimaryKey, AutoIncrement, Column("TranscriptionID")]
         public int TranscriptionID { get; set; }
 
-        [Column("Transcription"), NotNull]
         public string TranscriptionItem { get; set; }
     }
 
@@ -90,13 +84,10 @@ namespace linguid
         [PrimaryKey, AutoIncrement, Column("MeaningID")]
         public int MeaningID { get; set; }
 
-        [ForeignKey(typeof(Dictionary)), Column("fkItem"), NotNull]
         public int fkItem { get; set; }
 
-        [ForeignKey(typeof(Transcription)), Column("fkTranscription"), NotNull]
         public int fkTranscription { get; set; }
 
-        [ForeignKey(typeof(DictionaryRU)), Column("fkItemRu"), NotNull]
         public int fkItemRu { get; set; }
     }
 
@@ -106,7 +97,6 @@ namespace linguid
         [PrimaryKey, AutoIncrement, Column("CategoryID")]
         public int CategoryID { get; set; }
 
-        [Column("Category"), NotNull]
         public string CategoryName { get; set; }
     }
 
@@ -116,10 +106,8 @@ namespace linguid
         [PrimaryKey, AutoIncrement, Column("MbCID")]
         public int MbCID { get; set; }
 
-        [ForeignKey(typeof(Category)), Column("fkCategory"), NotNull]
         public int fkCategory { get; set; }
 
-        [ForeignKey(typeof(Meaning)), Column("fkMeaning"), NotNull]
         public int fkMeaningFk { get; set; }
 
     }
@@ -130,10 +118,8 @@ namespace linguid
         [PrimaryKey, AutoIncrement, Column("FavoriteID")]
         public int FavoriteID { get; set; }
 
-        [ForeignKey(typeof(User)), Column("fkUser"), NotNull]
         public int fkUser { get; set; }
 
-        [ForeignKey(typeof(Meaning)), Column("fkMeaning"), NotNull]
         public int fkMeaning { get; set; }
     }
 
@@ -143,13 +129,10 @@ namespace linguid
         [PrimaryKey, AutoIncrement, Column("LessonID")]
         public int LessonID { get; set; }
 
-        [ForeignKey(typeof(User)), Column("fkUser"), NotNull]
         public int fkUser { get; set; }
 
-        [ForeignKey(typeof(MeaningByCategory)), Column("fkMbC"), NotNull]
         public int fkMbC { get; set; }
 
-        [Column("Date")]
         public DateTime Date { get; set; }
     }
 
@@ -159,13 +142,10 @@ namespace linguid
         [PrimaryKey, AutoIncrement, Column("HistoryID")]
         public int HistoryID { get; set; }
 
-        [ForeignKey(typeof(User)), Column("fkUser"), NotNull]
         public int fkUser { get; set; }
 
-        [ForeignKey(typeof(Meaning)), Column("fkMeaning"), NotNull]
         public int fkMeaning { get; set; }
 
-        [Column("Date")]
         public DateTime Date { get; set; }
     }
 
