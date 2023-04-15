@@ -22,7 +22,7 @@ namespace linguid.Views
                 favoritePage.IsEnabled = false;
                 lessonsPage.IsEnabled = false;
             }
-           
+
             GetLanguage();
         }
 

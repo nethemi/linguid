@@ -101,9 +101,9 @@ namespace linguid
             return await database.Table<User>().ToListAsync();
         }
 
-        public async Task<User> GetUserAsync(int id)
+        public async Task<User> GetUserAsync(string login)
         {
-            return await database.GetAsync<User>(id);
+            return await database.GetAsync<User>(login);
         }
         public async Task<int> DeleteUserAsync(User item)
         {
