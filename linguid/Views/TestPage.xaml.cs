@@ -23,7 +23,9 @@ namespace linguid.Views
         {
             await App.Database.CreateMeaning();
 
-            dictionaryView.ItemsSource = await App.Database.GetMeaningWithChildren();
+            //dictionaryView.ItemsSource = await App.Database.GetMeaningWithChildren();
+            dictionaryView.ItemsSource = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == 2);
+
 
             base.OnAppearing();
         }
