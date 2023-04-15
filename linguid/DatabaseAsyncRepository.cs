@@ -1,7 +1,11 @@
 ﻿using System.Collections.Generic;
+using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
+using DevExpress.Mvvm.Native;
+using DevExpress.XamarinForms.Core.Themes;
 using SQLite;
+using SQLiteNetExtensionsAsync.Extensions;
 
 namespace linguid
 {
@@ -182,9 +186,9 @@ namespace linguid
             }
         }
 
-        //public Task<List<Dictionary>> SearchDictionary(string search)
+        //public Task<List<Dictionary>> SearchDictionary(int i)
         //{
-        //    return database.Table<Dictionary>().Where(p => p.Item.StartsWith(search)).ToListAsync();
+        //    return database.Table<Dictionary>().Where(p => p.fkLanguage.Equals(i)).ToListAsync();
         //}
         #endregion
 
@@ -343,6 +347,11 @@ namespace linguid
             {
                 return await database.InsertAsync(item);
             }
+        }
+
+        public async Task<List<Meaning>> GetMeaningWithChildren()
+        {
+            return await database.GetAllWithChildrenAsync<Meaning>();
         }
         #endregion
 

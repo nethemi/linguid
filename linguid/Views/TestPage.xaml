@@ -6,6 +6,7 @@
              Background="White">
     <ContentPage.Content>
         <StackLayout>
+
             <CollectionView x:Name="dictionaryView" ItemsSource="{Binding}">
                 <CollectionView.ItemTemplate>
                     <DataTemplate>
@@ -28,11 +29,18 @@
                                         <ColumnDefinition/>
                                         <ColumnDefinition/>
                                     </Grid.ColumnDefinitions>
-                                    <Label Text="{Binding fkItem}" TextColor="Black" Grid.Row="0" Grid.Column="0"/>
-                                    <Label Text="{Binding fkTransctription}" TextColor="Black" Grid.Row="1" Grid.Column="0"/>
-                                    <Label Text="{Binding fkItemRu}" TextColor="Black" Grid.Row="2" Grid.Column="0"/>
-                                   
+
+                                    <Label Text="{Binding dictionary.Item}" TextColor="Black" Grid.Row="0" Grid.Column="0"/>
+                                    <Label Text="{Binding transcription.TranscriptionItem}" TextColor="Black" Grid.Row="1" Grid.Column="0"/>
+                                    <Label Text="{Binding dictionaryRu.ItemRu}" TextColor="Black" Grid.Row="2" Grid.Column="0"/>
+                                    <!--
+                                    
+                                    
+                                    <Label Text="{Binding Meaning.transctription.Transcription}" TextColor="Black" Grid.Row="1" Grid.Column="0"/>
+                                 
                                     <Button Text="Delete" Background="red" Style="{StaticResource regBtn}" CommandParameter="{Binding .}" Clicked="Button_Clicked" Grid.RowSpan="3" Grid.Column="1"/>
+                                    -->
+                                    
                                 </Grid>
                             </Frame>
                         </StackLayout>

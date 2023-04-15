@@ -58,6 +58,9 @@ namespace linguid
         public string Item { get; set; }
 
         public int fkLanguage { get; set; }
+
+        [OneToMany (CascadeOperations = CascadeOperation.All)]
+        public List<Meaning> meaning { get; set; }
     }
 
     [Table("DictionaryRu")]
@@ -67,6 +70,9 @@ namespace linguid
         public int ItemRuID { get; set; }
 
         public string ItemRu { get; set; }
+
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public List<Meaning> meaning { get; set; }
     }
 
     [Table("Transcription")]
@@ -75,7 +81,10 @@ namespace linguid
         [PrimaryKey, AutoIncrement, Column("TranscriptionID")]
         public int TranscriptionID { get; set; }
 
-        public string TransctriptionItem { get; set; }
+        public string TranscriptionItem { get; set; }
+
+        [OneToMany(CascadeOperations = CascadeOperation.All)]
+        public List<Meaning> meaning { get; set; }
     }
 
     [Table("Meaning")]
@@ -84,11 +93,24 @@ namespace linguid
         [PrimaryKey, AutoIncrement, Column("MeaningID")]
         public int MeaningID { get; set; }
 
+        [ForeignKey(typeof(Dictionary))]
         public int fkItem { get; set; }
 
+        [ForeignKey(typeof(Transcription))]
         public int fkTransctription { get; set; }
 
+        [ForeignKey(typeof(DictionaryRU))]
         public int fkItemRu { get; set; }
+
+        [ManyToOne(CascadeOperations = CascadeOperation.All)]
+        public Dictionary dictionary { get; set; }
+
+        [ManyToOne(CascadeOperations = CascadeOperation.All)]
+        public Transcription transcription { get; set; }
+
+        [ManyToOne(CascadeOperations = CascadeOperation.All)]
+        public DictionaryRU dictionaryRu { get; set; }
+
     }
 
     [Table("Category")]
