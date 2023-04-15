@@ -285,6 +285,11 @@ namespace linguid
             }
         }
 
+        public async Task<List<Meaning>> GetMeaningWithChildren()
+        {
+            return await database.GetAllWithChildrenAsync<Meaning>();
+        }
+
         #endregion
 
         #region category
@@ -349,9 +354,9 @@ namespace linguid
             }
         }
 
-        public async Task<List<Meaning>> GetMeaningWithChildren()
+        public async Task<List<MeaningByCategory>> GetMbCWithChildren()
         {
-            return await database.GetAllWithChildrenAsync<Meaning>();
+            return await database.GetAllWithChildrenAsync<MeaningByCategory>();
         }
         #endregion
 

@@ -6,7 +6,7 @@
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              NavigationPage.HasNavigationBar="False"
              Background="white">
-    
+
     <ContentPage.Content>
         <StackLayout xct:ShadowEffect.Color="Black"
                          xct:ShadowEffect.OffsetY="0"   
@@ -25,7 +25,37 @@
                 Margin="0,0,5,0"/>
             </StackLayout>
 
-          
+            <CollectionView x:Name="dictionaryView" ItemsSource="{Binding}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10,0,15,10">
+                            <Frame HasShadow="True"
+                         xct:ShadowEffect.Color="Black"
+                         xct:ShadowEffect.OffsetY="0"   
+                         xct:ShadowEffect.Radius="4"
+                         HeightRequest="100"
+                         CornerRadius="15" 
+                         BackgroundColor="#F1F3F4" 
+                         HorizontalOptions="Fill" >
+                                <Grid RowSpacing="10">
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                        <RowDefinition/>
+                                    </Grid.RowDefinitions>
+
+                                    <Label Text="{Binding fkCategory}" TextColor="Black" Grid.Row="0"/>
+                                    <Label Text="{Binding MnCID}" TextColor="Black" Grid.Row="1"/>
+                                    <Label Text="{Binding fkMeaning}" TextColor="Black" Grid.Row="2" />
+                                    
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
+
+
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

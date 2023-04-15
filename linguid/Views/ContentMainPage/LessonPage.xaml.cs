@@ -26,5 +26,10 @@ namespace linguid.Views.ContentMainPage
 
             base.OnAppearing();
         }
+
+        private async void categoryViewItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            await Navigation.PushAsync(new StartLessonPage());
+        }
     }
 }
