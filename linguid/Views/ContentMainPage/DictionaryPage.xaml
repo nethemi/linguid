@@ -3,7 +3,6 @@
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="linguid.Views.ContentMainPage.DictionaryPage"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
-             xmlns:dxg="http://schemas.devexpress.com/xamarin/2014/forms/datagrid"
              xmlns:local="clr-namespace:linguid;assembly=linguid"
              NavigationPage.HasNavigationBar="False"
              Background="white">
@@ -22,43 +21,37 @@
 
             <Label Style="{StaticResource titleTxt}" Text="Недавно просмотренные" HorizontalOptions="StartAndExpand" Padding="5" x:Name="recentlyViewed"/>
 
-            <CollectionView x:Name="dictionatyView">
-                <CollectionView.ItemTemplate>
+            <ListView x:Name="dictionatyView" RowHeight="150" ItemsSource="{Binding}" ItemSelected="dictionatyViewItemSelected">
+                <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="10,0,15,10">
-                            <Frame HasShadow="True"
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Padding="10,10,15,10">
+                                    <Frame HasShadow="True"
                                    xct:ShadowEffect.Color="Black"
                                    xct:ShadowEffect.OffsetY="0"
                                    xct:ShadowEffect.Radius="4"
                                    HeightRequest="100"
                                    CornerRadius="15"
                                    BackgroundColor="#F1F3F4">
-                                <Grid RowSpacing="5">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
+                                        <Grid RowSpacing="5">
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                                <RowDefinition Height="*"/>
+                                            </Grid.RowDefinitions>
+                                            <Grid.ColumnDefinitions>
+                                                <ColumnDefinition Width="150"/>
+                                                <ColumnDefinition Width="*"/>
+                                                <ColumnDefinition Width="*"/>
+                                            </Grid.ColumnDefinitions>
 
-                                    <Label Style="{StaticResource gridTxt}" Text="{Binding dictionary.Item}" Grid.Row="0" Grid.Column="0"/>
-                                    <Label Style="{StaticResource gridTxt}" Text="{Binding transcription.TranscriptionItem}" Grid.Row="1" Grid.Column="0"/>
-                                    <Label Style="{StaticResource gridTxt}" Text="{Binding dictionaryRu.ItemRu}" Grid.Row="2" Grid.Column="0"/>
-                                    <ImageButton Source="{local:ImageResource linguid.Images.addFav.png}" 
-                                                 BackgroundColor="Transparent"
-                                                 WidthRequest="40" 
-                                                 HeightRequest="40" 
-                                                 Grid.Column="3" 
-                                                 Grid.RowSpan="3" 
-                                                 HorizontalOptions="Center" 
-                                                 VerticalOptions="Center"/>
-                                    
-                                    <ImageButton Source="{local:ImageResource linguid.Images.edit.png}"
+                                            <Label Style="{StaticResource gridTxt}" Text="{Binding dictionary.Item}" Grid.Row="0" Grid.Column="0"/>
+                                            <Label Style="{StaticResource gridTxt}" Text="{Binding transcription.TranscriptionItem}" Grid.Row="1" Grid.Column="0"/>
+                                            <Label Style="{StaticResource gridTxt}" Text="{Binding dictionaryRu.ItemRu}" Grid.Row="2" Grid.Column="0"/>
+
+
+                                            <ImageButton Source="{local:ImageResource linguid.Images.edit.png}"
                                                  IsVisible="False"
                                                  BackgroundColor="Transparent"
                                                  WidthRequest="40" 
@@ -67,7 +60,7 @@
                                                  Grid.RowSpan="3" 
                                                  HorizontalOptions="Center" 
                                                  VerticalOptions="Center"/>
-                                    <ImageButton Source="{local:ImageResource linguid.Images.trash.png}" 
+                                            <ImageButton Source="{local:ImageResource linguid.Images.trash.png}" 
                                                  IsVisible="False"
                                                  BackgroundColor="Transparent"
                                                  WidthRequest="40" 
@@ -77,12 +70,14 @@
                                                  HorizontalOptions="Center" 
                                                  VerticalOptions="Center"/>
 
-                                </Grid>
-                            </Frame>
-                        </StackLayout>
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </ListView.ItemTemplate>
+            </ListView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

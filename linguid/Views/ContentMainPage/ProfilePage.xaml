@@ -11,18 +11,9 @@
                      xct:ShadowEffect.Color="Black"
                      xct:ShadowEffect.OffsetY="0"   
                      xct:ShadowEffect.Radius="1">
-            
-            <StackLayout Orientation="Vertical" x:Name="noUser" IsVisible="false" Margin="0,100,0,220">
-                <Button Style="{StaticResource choiceBtn}"
-                        xct:ShadowEffect.Color="Black"
-                        xct:ShadowEffect.OffsetY="15"   
-                        xct:ShadowEffect.Radius="5"
-                        Margin="20,5,20,5"
-                        HeightRequest="45"
-                        Text="Изменить язык"
-                        TextColor="#000000"
-                        Clicked="ChoiceClicked"/>
 
+            <StackLayout Orientation="Vertical" x:Name="noUser" IsVisible="false" Margin="0,150,0,230">
+                
                 <Label Style="{StaticResource titleTxt}" Text="Войдите в профиль,чтобы получить полный доступ" HorizontalOptions="Center" Margin="0,80,0,10"/>
                 <Button Style="{StaticResource mainBtn}"
                 HorizontalOptions="Center"
