@@ -47,7 +47,7 @@
                                     <Label Text="{Binding meaning.fkItem}" TextColor="Black" Grid.Row="0"/>
                                     <Label Text="{Binding meaning.transcription.TranscriptionItem}" TextColor="Black" Grid.Row="1"/>
                                     <Label Text="{Binding meaning.dictionaryRu.ItemRu}" TextColor="Black" Grid.Row="2" />
-
+                                    
                                 </Grid>
                             </Frame>
                         </StackLayout>

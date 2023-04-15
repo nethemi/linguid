@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DevExpress.Mvvm.Native;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Linq;
@@ -24,10 +25,12 @@ namespace linguid.Views.ContentMainPage
         protected override async void OnAppearing()
         {
             await App.Database.CreateMbC();
+            await App.Database.CreateMeaning();
 
             var userLogin = Thread.CurrentPrincipal.Identity.Name;
             var user = await App.Database.GetUserAsync(userLogin);
             dictionaryView.ItemsSource = await App.Database.GetMbCWithChildren();
+
 
             base.OnAppearing();
         }
