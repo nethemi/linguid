@@ -290,6 +290,21 @@ namespace linguid
             return await database.GetAllWithChildrenAsync<Meaning>();
         }
 
+        public async Task<int> SaveMeaningWithChildren(Meaning item)
+        {
+            if (item.MeaningID != 0)
+            {
+                await database.UpdateWithChildrenAsync(item);
+                return item.MeaningID;
+            }
+            else
+            {
+               await database.InsertWithChildrenAsync(item);
+                //await database.InsertAllWithChildrenAsync((System.Collections.IEnumerable)item);
+               return item.MeaningID;
+            }
+        }
+
         #endregion
 
         #region category
@@ -452,6 +467,11 @@ namespace linguid
             {
                 return await database.InsertAsync(item);
             }
+        }
+
+        public async Task<List<Favorite>> GetFavoriteWithChildren()
+        {
+            return await database.GetAllWithChildrenAsync<Favorite>();
         }
         #endregion
     }

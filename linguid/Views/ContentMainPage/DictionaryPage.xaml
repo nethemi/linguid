@@ -53,14 +53,17 @@
 
                                             <ImageButton Source="{local:ImageResource linguid.Images.edit.png}"
                                                  IsVisible="False"
+                                                 x:Name="editBtn"
                                                  BackgroundColor="Transparent"
                                                  WidthRequest="40" 
                                                  HeightRequest="40" 
                                                  Grid.Column="1" 
                                                  Grid.RowSpan="3" 
                                                  HorizontalOptions="Center" 
-                                                 VerticalOptions="Center"/>
+                                                 VerticalOptions="Center"
+                                                 Clicked="editBtnClicked"/>
                                             <ImageButton Source="{local:ImageResource linguid.Images.trash.png}" 
+                                                 x:Name="delBtn"
                                                  IsVisible="False"
                                                  BackgroundColor="Transparent"
                                                  WidthRequest="40" 
@@ -68,7 +71,8 @@
                                                  Grid.Column="2" 
                                                  Grid.RowSpan="3" 
                                                  HorizontalOptions="Center" 
-                                                 VerticalOptions="Center"/>
+                                                 VerticalOptions="Center"
+                                                 Clicked="delBtnClicked"/>
 
                                         </Grid>
                                     </Frame>

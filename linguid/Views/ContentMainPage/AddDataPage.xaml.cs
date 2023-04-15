@@ -21,5 +21,9 @@ namespace linguid.Views.ContentMainPage
             base.OnAppearing();
         }
 
+        private void ButtonClicked(object sender, System.EventArgs e)
+        {
+
+        }
     }
 }

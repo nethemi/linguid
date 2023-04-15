@@ -22,7 +22,8 @@
                         Padding="15"
                         Margin="20,20,20,0"
                         Text="Добавить в избранное"
-                        HeightRequest="100"/>
+                        HeightRequest="100"
+                        Clicked="addFavClicked"/>
 
             <Button Style="{StaticResource choiceBtn}"
                     x:Name="delFav"

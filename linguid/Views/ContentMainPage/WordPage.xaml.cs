@@ -60,5 +60,25 @@ namespace linguid.Views.ContentMainPage
                 await Navigation.PushAsync(new StartLessonPage(category));
             }      
         }
+
+        private async void addFavClicked(object sender, EventArgs e)
+        {
+            //var item = sender as Button;
+            //var meaning = item.CommandParameter as Meaning;
+            //Favorite fav = new Favorite();
+            //fav.fkMeaning = meaning.MeaningID;
+            //var userLogin = Thread.CurrentPrincipal.Identity.Name;
+            //foreach (var user in await App.Database.GetUserAsync())
+            //{
+            //    if (userLogin == user.UserLogin)
+            //    {
+            //        fav.fkUser = user.UserID;
+            //        await App.Database.SaveFavoriteAsync(fav);
+            //    }
+            //}
+
+            //addFav.IsVisible = false;
+            //delFav.IsVisible = true;
+        }
     }
 }

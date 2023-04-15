@@ -16,7 +16,14 @@ namespace linguid.Views.ContentMainPage
 		public DictionaryPage ()
 		{
 			InitializeComponent ();
-		}
+
+            var userLogin = Thread.CurrentPrincipal.Identity.Name;
+            if (userLogin != "")
+            {
+                
+               
+            }
+        }
 
         private async void SearchBarTextChanged(object sender, TextChangedEventArgs e)
         {
@@ -48,6 +55,23 @@ namespace linguid.Views.ContentMainPage
         {
 			Meaning selected = (Meaning)e.SelectedItem;
 			await Navigation.PushAsync(new WordPage(selected));
+        }
+
+        private void editBtnClicked(object sender, EventArgs e)
+        {
+            var item = sender as Button;
+            var meaning = item.CommandParameter as Meaning;
+        }
+
+        private async void delBtnClicked(object sender, EventArgs e)
+        {
+            var item = sender as Button;
+            var meaning = item.CommandParameter as Meaning;
+            var result = await DisplayAlert("Удаление", $"Удалить {meaning.dictionary.Item} из базы данных", "Да", "Нет");
+            if (result)
+            {
+                await App.Database.DeleteMeaningAsync(meaning);
+            }
         }
     }
 }

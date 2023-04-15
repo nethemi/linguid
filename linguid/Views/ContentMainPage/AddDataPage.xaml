@@ -21,43 +21,58 @@
                               ItemsSource="{Binding}"
                               DisplayMember="LanguageName"
                               Margin="15,0,15,5">
+
             </dxe:ComboBoxEdit>
 
-            <dxe:TextEdit IsLabelFloating = "True"
-              LabelText="Слово или фраза"
-              LabelColor="#666666"
-              LabelFontSize="16"
-              FocusedLabelColor="#404040"
-              BorderColor="#666666"
-              FocusedBorderColor="#a5a5a5"
-              Margin="15,0,15,5" />
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
 
-            <dxe:TextEdit IsLabelFloating = "True"
-              LabelText="Транскрипция"
-              LabelColor="#666666"
-              LabelFontSize="16"
-              FocusedLabelColor="#404040"
-              BorderColor="#666666"
-              FocusedBorderColor="#a5a5a5"
-              Margin="15,0,15,5" />
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="110"/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-            <dxe:TextEdit IsLabelFloating = "True"
-              LabelText="Перевод"
-              LabelColor="#666666"
-              LabelFontSize="16"
-              FocusedLabelColor="#404040"
-              BorderColor="#666666"
-              FocusedBorderColor="#a5a5a5"
-              Margin="15,0,15,5" />
+                <Label Style="{StaticResource normalTxt}" Text="Слово или фраза" Grid.Column="0" Grid.Row="0" FontSize="14"/>
 
-            <dxe:TextEdit IsLabelFloating = "True"
-              LabelText="Категория"
-              LabelColor="#666666"
-              LabelFontSize="16"
-              FocusedLabelColor="#404040"
-              BorderColor="#666666"
-              FocusedBorderColor="#a5a5a5"
-              Margin="15,0,15,5" />
+                <dxe:TextEdit Grid.Column="1"
+                              Grid.Row="0"
+                              LabelText="{Binding dictionary.Item}"
+                              LabelColor="#666666"
+                              LabelFontSize="16"
+                              FocusedLabelColor="#404040"
+                              BorderColor="#666666"
+                              FocusedBorderColor="#a5a5a5"
+                              Margin="15,0,15,5"/>
+
+                <Label Style="{StaticResource normalTxt}" Text="Транскрипция" Grid.Column="0" Grid.Row="1" FontSize="14"/>
+
+                <dxe:TextEdit Grid.Column="1"
+                              Grid.Row="1"
+                              LabelText="{Binding transcription.TranscriptionItem}"
+                              LabelColor="#666666"
+                              LabelFontSize="16"
+                              FocusedLabelColor="#404040"
+                              BorderColor="#666666"
+                              FocusedBorderColor="#a5a5a5"
+                              Margin="15,0,15,5" />
+
+                <Label Style="{StaticResource normalTxt}" Text="Перевод" Grid.Column="0" Grid.Row="2" FontSize="14"/>
+
+                <dxe:TextEdit Grid.Column="1"
+                              Grid.Row="2"
+                              LabelText="{Binding dictionaryRu.ItemRu}"
+                              LabelColor="#666666"
+                              LabelFontSize="16"
+                              FocusedLabelColor="#404040"
+                              BorderColor="#666666"
+                              FocusedBorderColor="#a5a5a5"
+                              Margin="15,0,15,5" />
+                
+            </Grid>
 
             <Button Style="{StaticResource mainBtn}"
                     Text="Добавить"
@@ -66,7 +81,8 @@
                     Background="#6C19FF"
                     BorderColor="#6C19FF"
                     TextColor="#ffffff"
-                    Margin="30"/>
+                    Margin="30"
+                    Clicked="ButtonClicked"/>
 
 
         </StackLayout>
