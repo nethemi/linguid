@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -14,9 +15,10 @@ namespace linguid.Views.ContentMainPage
 	public partial class StartLessonPage : ContentPage
 	{
         Category _category = new Category();
-		public StartLessonPage()
+		public StartLessonPage(Category selected)
 		{
 			InitializeComponent ();
+            _category = selected;
         }
 
         protected override async void OnAppearing()
@@ -25,8 +27,7 @@ namespace linguid.Views.ContentMainPage
 
             var userLogin = Thread.CurrentPrincipal.Identity.Name;
             var user = await App.Database.GetUserAsync(userLogin);
-            dictionaryView.ItemsSource = await App.Database.GetMbCAsync();
-
+            dictionaryView.ItemsSource = await App.Database.GetMbCWithChildren();
 
             base.OnAppearing();
         }

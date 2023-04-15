@@ -50,6 +50,7 @@
                                     <Label Style="{StaticResource gridTxt}" Text="{Binding transcription.TranscriptionItem}" Grid.Row="1" Grid.Column="0"/>
                                     <Label Style="{StaticResource gridTxt}" Text="{Binding dictionaryRu.ItemRu}" Grid.Row="2" Grid.Column="0"/>
                                     <ImageButton Source="{local:ImageResource linguid.Images.favorite.png}" 
+                                                 Background="transparent"
                                                  WidthRequest="40" 
                                                  HeightRequest="40" 
                                                  Grid.Column="3" 

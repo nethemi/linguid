@@ -21,13 +21,22 @@
                        FontSize="16"     
                        HorizontalOptions="StartAndExpand" Padding="5,0,0,10"/>
 
-            <ListView x:Name="categoryView" ItemsSource="{Binding}" ItemSelected="categoryViewItemSelected">
+
+            <ListView x:Name="categoryView" ItemsSource="{Binding}" ItemSelected="categoryViewItemSelected" RowHeight="100">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <StackLayout Orientation="Horizontal">
-                                    <Label Text="{Binding CategoryName}" Style="{StaticResource titleTxt}" />
+                                <StackLayout Padding="10,0,10,0">
+                                    <Frame HasShadow="True"
+                                   xct:ShadowEffect.Color="Black"
+                                   xct:ShadowEffect.OffsetY="0"
+                                   xct:ShadowEffect.Radius="4"
+                                   HeightRequest="40"
+                                   CornerRadius="15"
+                                   BackgroundColor="#F1F3F4">
+                                        <Label Text="{Binding CategoryName}" Style="{StaticResource titleTxt}" />
+                                    </Frame>
                                 </StackLayout>
                             </ViewCell.View>
                         </ViewCell>

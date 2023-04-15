@@ -29,7 +29,8 @@ namespace linguid.Views.ContentMainPage
 
         private async void categoryViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-            await Navigation.PushAsync(new StartLessonPage());
+            Category selected = (Category)e.SelectedItem;
+            await Navigation.PushAsync(new StartLessonPage(selected));
         }
     }
 }
