@@ -6,5 +6,5 @@
     <color name="colorAccent">#6C19FF</color>
 
 	<!--set your selected item background color-->
-	<color name="ListViewSelected">#96BCE3</color>
+	<color name="ListViewSelected">@color/mtrl_btn_transparent_bg_color</color>
 </resources>

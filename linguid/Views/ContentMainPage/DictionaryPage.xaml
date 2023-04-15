@@ -49,30 +49,33 @@
                                     <Label Style="{StaticResource gridTxt}" Text="{Binding dictionary.Item}" Grid.Row="0" Grid.Column="0"/>
                                     <Label Style="{StaticResource gridTxt}" Text="{Binding transcription.TranscriptionItem}" Grid.Row="1" Grid.Column="0"/>
                                     <Label Style="{StaticResource gridTxt}" Text="{Binding dictionaryRu.ItemRu}" Grid.Row="2" Grid.Column="0"/>
-                                    <ImageButton Source="{local:ImageResource linguid.Images.favorite.png}" 
-                                                 Background="transparent"
+                                    <ImageButton Source="{local:ImageResource linguid.Images.addFav.png}" 
+                                                 BackgroundColor="Transparent"
                                                  WidthRequest="40" 
                                                  HeightRequest="40" 
                                                  Grid.Column="3" 
                                                  Grid.RowSpan="3" 
                                                  HorizontalOptions="Center" 
                                                  VerticalOptions="Center"/>
-                                    <!--
-                                <ImageButton Source="{local:ImageResource linguid.Images.edit.png}" 
+                                    
+                                    <ImageButton Source="{local:ImageResource linguid.Images.edit.png}"
+                                                 IsVisible="False"
+                                                 BackgroundColor="Transparent"
+                                                 WidthRequest="40" 
+                                                 HeightRequest="40" 
+                                                 Grid.Column="1" 
+                                                 Grid.RowSpan="3" 
+                                                 HorizontalOptions="Center" 
+                                                 VerticalOptions="Center"/>
+                                    <ImageButton Source="{local:ImageResource linguid.Images.trash.png}" 
+                                                 IsVisible="False"
+                                                 BackgroundColor="Transparent"
                                                  WidthRequest="40" 
                                                  HeightRequest="40" 
                                                  Grid.Column="2" 
                                                  Grid.RowSpan="3" 
                                                  HorizontalOptions="Center" 
                                                  VerticalOptions="Center"/>
-                                    <ImageButton Source="{local:ImageResource linguid.Images.trash.png}" 
-                                                 WidthRequest="40" 
-                                                 HeightRequest="40" 
-                                                 Grid.Column="3" 
-                                                 Grid.RowSpan="3" 
-                                                 HorizontalOptions="Center" 
-                                                 VerticalOptions="Center"/>
-                                    -->
 
                                 </Grid>
                             </Frame>

@@ -20,6 +20,7 @@ namespace linguid.Views.ContentMainPage
 		{
 			InitializeComponent ();
             _category = selected;
+            lesson.Text = _category.CategoryName;
         }
 
         protected override async void OnAppearing()
@@ -28,8 +29,15 @@ namespace linguid.Views.ContentMainPage
             await App.Database.CreateMeaning();
 
             var userLogin = Thread.CurrentPrincipal.Identity.Name;
-            var user = await App.Database.GetUserAsync(userLogin);
-            dictionaryView.ItemsSource = await App.Database.GetMbCWithChildren();
+            foreach (var user in await App.Database.GetUserAsync())
+            {
+                if (userLogin == user.UserLogin)
+                {
+                    dictionaryView.ItemsSource = (await App.Database.GetMbCWithChildren()).Where(z=>z.fkCategory==_category.CategoryID);
+                }
+            }
+
+            
 
 
             base.OnAppearing();

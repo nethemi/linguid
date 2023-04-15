@@ -10,11 +10,10 @@
     <ContentPage.Content>
         <StackLayout xct:ShadowEffect.Color="Black"
                          xct:ShadowEffect.OffsetY="0"   
-                         xct:ShadowEffect.Radius="1"
-                     Padding="10">
+                         xct:ShadowEffect.Radius="1">
             
-            <StackLayout Orientation="Horizontal">
-                <Label Style="{StaticResource titleTxt}" Text="Lesson" HorizontalOptions="StartAndExpand" Padding="5"/>
+            <StackLayout Orientation="Horizontal" Padding="10,10,10,10">
+                <Label Style="{StaticResource titleTxt}" Text="{Binding CategoryName}" HorizontalOptions="StartAndExpand" Padding="5" x:Name="lesson"/>
                 <Button Style="{StaticResource mainBtn}"
                 HorizontalOptions="EndAndExpand"
                 Text="Начать урок"
@@ -45,8 +44,8 @@
                                     </Grid.RowDefinitions>
 
                                     <Label Text="{Binding meaning.fkItem}" TextColor="Black" Grid.Row="0"/>
-                                    <Label Text="{Binding meaning.transcription.TranscriptionItem}" TextColor="Black" Grid.Row="1"/>
-                                    <Label Text="{Binding meaning.dictionaryRu.ItemRu}" TextColor="Black" Grid.Row="2" />
+                                    <Label Text="{Binding fkCategory}" TextColor="Black" Grid.Row="1"/>
+                                    <Label Text="{Binding category.CategoryID}" TextColor="Black" Grid.Row="2" />
                                     
                                 </Grid>
                             </Frame>
