@@ -43,9 +43,9 @@
                                         <RowDefinition/>
                                     </Grid.RowDefinitions>
 
-                                    <Label Text="{Binding meaning.dictionaryRu.ItemRu}" TextColor="Black" Grid.Row="0"/>
-                                    <Label Text="{Binding meaning.dictionary.Item}" TextColor="Black" Grid.Row="1"/>
-                                    <Label Text="{Binding category.CategoryID}" TextColor="Black" Grid.Row="2" />
+                                    <Label Text="{Binding dictionary.Item}" TextColor="Black" Grid.Row="0"/>
+                                    <Label Text="{Binding transcription.TranscriptionItem}" TextColor="Black" Grid.Row="1"/>
+                                    <Label Text="{Binding dictionaryRu.ItemRu}" TextColor="Black" Grid.Row="2" />
                                     
                                 </Grid>
                             </Frame>
