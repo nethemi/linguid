@@ -23,38 +23,40 @@
                 Margin="0,0,5,0"/>
             </StackLayout>
 
-            <ListView x:Name="dictionaryView" ItemsSource="{Binding}" ItemSelected="dictionaryViewItemSelected">
+            <ListView x:Name="dictionaryView" ItemsSource="{Binding}" ItemSelected="dictionaryViewItemSelected" RowHeight="150">
                 <ListView.ItemTemplate>
                     <DataTemplate>
-                        <StackLayout Padding="10,0,15,10">
-                            <Frame HasShadow="True"
+                        <ViewCell>
+                            <ViewCell.View>
+                                <StackLayout Padding="10,0,15,10">
+                                    <Frame HasShadow="True"
                          xct:ShadowEffect.Color="Black"
                          xct:ShadowEffect.OffsetY="0"   
                          xct:ShadowEffect.Radius="4"
                          HeightRequest="100"
                          CornerRadius="15" 
                          BackgroundColor="#F1F3F4" 
-                         HorizontalOptions="Fill" >
-                                <Grid RowSpacing="10">
-                                    
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                        <RowDefinition/>
-                                    </Grid.RowDefinitions>
+                         HorizontalOptions="Fill">
+                                        <Grid RowSpacing="10">
 
-                                    <Label Text="{Binding dictionary.Item}" TextColor="Black" Grid.Row="0"/>
-                                    <Label Text="{Binding transcription.TranscriptionItem}" TextColor="Black" Grid.Row="1"/>
-                                    <Label Text="{Binding  dictionaryRu.ItemRu}" TextColor="Black" Grid.Row="2" />
-                                    
-                                </Grid>
-                            </Frame>
-                        </StackLayout>
+                                            <Grid.RowDefinitions>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                                <RowDefinition/>
+                                            </Grid.RowDefinitions>
+
+                                            <Label Text="{Binding dictionary.Item}" TextColor="Black" Grid.Row="0"/>
+                                            <Label Text="{Binding transcription.TranscriptionItem}" TextColor="Black" Grid.Row="1"/>
+                                            <Label Text="{Binding dictionaryRu.ItemRu}" TextColor="Black" Grid.Row="2" />
+
+                                        </Grid>
+                                    </Frame>
+                                </StackLayout>
+                            </ViewCell.View>
+                        </ViewCell>
                     </DataTemplate>
                 </ListView.ItemTemplate>
             </ListView>
-
-
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
