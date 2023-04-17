@@ -21,7 +21,7 @@
 
             <Label Style="{StaticResource titleTxt}" Text="Недавно просмотренные" HorizontalOptions="StartAndExpand" Padding="5" x:Name="recentlyViewed"/>
 
-            <ListView x:Name="recentlyView" RowHeight="150" ItemsSource="{Binding}" ItemSelected="recentlyViewItemSelected" >
+            <ListView x:Name="recentlyView" RowHeight="150" ItemsSource="{Binding}" ItemSelected="recentlyViewItemSelected" Margin="-7">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -51,10 +51,9 @@
                                             <Label Style="{StaticResource gridTxt}" Text="{Binding dictionaryRu.ItemRu}" Grid.Row="2" Grid.Column="0"/>
 
 
-                                            <ImageButton Source="{local:ImageResource linguid.Images.edit.png}"
-                                                 IsVisible="False"
-                                                 x:Name="editBtn"
+                                            <Button ImageSource="{local:ImageResource linguid.Images.edit.png}"
                                                  BackgroundColor="Transparent"
+                                                    CommandParameter="{Binding .}"
                                                  WidthRequest="40" 
                                                  HeightRequest="40" 
                                                  Grid.Column="1" 
@@ -62,9 +61,8 @@
                                                  HorizontalOptions="Center" 
                                                  VerticalOptions="Center"
                                                  Clicked="editBtnClicked"/>
-                                            <ImageButton Source="{local:ImageResource linguid.Images.trash.png}" 
-                                                 x:Name="delBtn"
-                                                 IsVisible="False"
+                                            <Button ImageSource="{local:ImageResource linguid.Images.trash.png}" 
+                                                    CommandParameter="{Binding .}"
                                                  BackgroundColor="Transparent"
                                                  WidthRequest="40" 
                                                  HeightRequest="40" 
@@ -112,10 +110,9 @@
                                             <Label Style="{StaticResource gridTxt}" Text="{Binding dictionaryRu.ItemRu}" Grid.Row="2" Grid.Column="0"/>
 
 
-                                            <ImageButton Source="{local:ImageResource linguid.Images.edit.png}"
-                                                 IsVisible="False"
-                                                 x:Name="editBtn"
+                                            <Button ImageSource="{local:ImageResource linguid.Images.edit.png}"
                                                  BackgroundColor="Transparent"
+                                                    CommandParameter="{Binding .}"
                                                  WidthRequest="40" 
                                                  HeightRequest="40" 
                                                  Grid.Column="1" 
@@ -123,9 +120,8 @@
                                                  HorizontalOptions="Center" 
                                                  VerticalOptions="Center"
                                                  Clicked="editBtnClicked"/>
-                                            <ImageButton Source="{local:ImageResource linguid.Images.trash.png}" 
-                                                 x:Name="delBtn"
-                                                 IsVisible="False"
+                                            <Button ImageSource="{local:ImageResource linguid.Images.trash.png}" 
+                                                    CommandParameter="{Binding .}"
                                                  BackgroundColor="Transparent"
                                                  WidthRequest="40" 
                                                  HeightRequest="40" 

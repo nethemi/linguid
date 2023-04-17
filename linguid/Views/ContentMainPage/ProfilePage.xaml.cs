@@ -75,7 +75,7 @@ namespace linguid.Views.ContentMainPage
 
         private async void AddClicked(object sender, EventArgs e)
         {
-            await Navigation.PushAsync(new AddDataPage());
+            await Navigation.PushAsync(new AddDataPage(null));
         }
 
         private async void ExitClicked(object sender, EventArgs e)

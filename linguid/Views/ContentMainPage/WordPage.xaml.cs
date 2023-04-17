@@ -33,14 +33,13 @@ namespace linguid.Views.ContentMainPage
             else
             {
                 addFav.IsVisible = true;
+                IsFavorite(userLogin);
             }
 
-            IsFavorite();
         }
 
-        private async void IsFavorite()
+        private async void IsFavorite(string userLogin)
         {
-            var userLogin = Thread.CurrentPrincipal.Identity.Name;
             foreach (var user in await App.Database.GetUserAsync())
             {
                 if (userLogin == user.UserLogin)

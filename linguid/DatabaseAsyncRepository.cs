@@ -185,11 +185,6 @@ namespace linguid
                 return await database.InsertAsync(item);
             }
         }
-
-        //public Task<List<Dictionary>> SearchDictionary(int i)
-        //{
-        //    return database.Table<Dictionary>().Where(p => p.fkLanguage.Equals(i)).ToListAsync();
-        //}
         #endregion
 
         #region dictionaryRu
@@ -288,21 +283,6 @@ namespace linguid
         public async Task<List<Meaning>> GetMeaningWithChildren()
         {
             return await database.GetAllWithChildrenAsync<Meaning>();
-        }
-
-        public async Task<int> SaveMeaningWithChildren(Meaning item)
-        {
-            if (item.MeaningID != 0)
-            {
-                await database.UpdateWithChildrenAsync(item);
-                return item.MeaningID;
-            }
-            else
-            {
-               await database.InsertWithChildrenAsync(item);
-                //await database.InsertAllWithChildrenAsync((System.Collections.IEnumerable)item);
-               return item.MeaningID;
-            }
         }
 
         #endregion
