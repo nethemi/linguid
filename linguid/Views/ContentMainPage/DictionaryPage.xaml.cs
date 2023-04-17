@@ -16,13 +16,31 @@ namespace linguid.Views.ContentMainPage
 		public DictionaryPage ()
 		{
 			InitializeComponent ();
+        }
+        protected override async void OnAppearing()
+        {
+            await App.Database.CreateFavorite();
+            await App.Database.CreateMeaning();
 
             var userLogin = Thread.CurrentPrincipal.Identity.Name;
             if (userLogin != "")
             {
-                
-               
+                foreach (var user in await App.Database.GetUserAsync())
+                {
+                    if (userLogin == user.UserLogin)
+                    {
+
+                        if (searchBar.Text == "")
+                        {
+                            dictionatyView.ItemsSource = (await App.Database.GetFavoriteWithChildren()).Where(z => z.meaning.dictionary.fkLanguage == user.fkLanguage);
+                        }
+                    }
+                }
             }
+
+            
+
+            base.OnAppearing();
         }
 
         private async void SearchBarTextChanged(object sender, TextChangedEventArgs e)
@@ -54,7 +72,24 @@ namespace linguid.Views.ContentMainPage
         private async void dictionatyViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
 			Meaning selected = (Meaning)e.SelectedItem;
-			await Navigation.PushAsync(new WordPage(selected));
+            Favorite favorite = new Favorite();
+           
+            var userLogin = Thread.CurrentPrincipal.Identity.Name;
+            if (userLogin != "")
+            {
+                foreach (var user in await App.Database.GetUserAsync())
+                {
+                    if (userLogin == user.UserLogin)
+                    {
+                        favorite.fkMeaning = selected.MeaningID;
+                        favorite.fkUser = user.UserID;
+                        await App.Database.SaveFavoriteAsync(favorite);
+                    }
+                }
+            }
+
+            await Navigation.PushAsync(new WordPage(selected));
+
         }
 
         private void editBtnClicked(object sender, EventArgs e)

@@ -33,17 +33,24 @@ namespace linguid.Views.ContentMainPage
             {
                 if (userLogin == user.UserLogin)
                 {
-                    var mbc = (await App.Database.GetMbCWithChildren()).Where(z => z.fkCategory == _category.CategoryID).Select(x => x.fkMeaning);
-                    foreach( var child in mbc)
-                    {
+                    var mbc = (await App.Database.GetMbCWithChildren()).Where(z => z.fkCategory == _category.CategoryID);
+                    var meaning = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == user.fkLanguage);
+                    List <Meaning> listMeans = new List <Meaning> ();
 
-                        dictionaryView.ItemsSource = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == user.fkLanguage && z.MeaningID == child).ToList();
+                    foreach ( var item in mbc)
+                    {
+                        foreach(var item2 in meaning)
+                        {
+                            if (item.fkMeaning == item2.MeaningID)
+                            {
+                                listMeans.Add (item2);
+                            }
+                        }
                     }
+                    dictionaryView.ItemsSource = listMeans;
+
                 }
             }
-
-            
-
 
             base.OnAppearing();
         }

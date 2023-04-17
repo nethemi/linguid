@@ -374,7 +374,6 @@ namespace linguid
         {
             return await database.GetAllWithChildrenAsync<MeaningByCategory>();
         }
-
         #endregion
 
         #region history_meaning

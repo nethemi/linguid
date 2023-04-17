@@ -16,7 +16,7 @@
                          xct:ShadowEffect.Radius="1">
             <Label Style="{StaticResource titleTxt}" Text="Избранное" HorizontalOptions="StartAndExpand" Padding="5"/>
 
-            <ListView x:Name="dictionatyView" RowHeight="150" ItemsSource="{Binding}" ItemSelected="dictionatyViewItemSelected">
+            <ListView x:Name="dictionaryView" RowHeight="150" ItemsSource="{Binding}" ItemSelected="dictionatyViewItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -36,9 +36,9 @@
                                                 <RowDefinition Height="*"/>
                                             </Grid.RowDefinitions>
 
-                                            <Label Style="{StaticResource gridTxt}" Text="{Binding meaning.fkItem}" Grid.Row="0"/>
-                                            <Label Style="{StaticResource gridTxt}" Text="{Binding meaning.transcription.TranscriptionItem}" Grid.Row="1"/>
-                                            <Label Style="{StaticResource gridTxt}" Text="{Binding meaning.dictionaryRu.ItemRu}" Grid.Row="2"/>
+                                            <Label Style="{StaticResource gridTxt}" Text="{Binding dictionary.Item}" Grid.Row="0"/>
+                                            <Label Style="{StaticResource gridTxt}" Text="{Binding transcription.TranscriptionItem}" Grid.Row="1"/>
+                                            <Label Style="{StaticResource gridTxt}" Text="{Binding dictionaryRu.ItemRu}" Grid.Row="2"/>
 
                                         </Grid>
                                     </Frame>

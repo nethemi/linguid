@@ -23,13 +23,25 @@ namespace linguid.Views.ContentMainPage
             await App.Database.CreateFavorite();
 
             var userLogin = Thread.CurrentPrincipal.Identity.Name;
-
             foreach (var user in await App.Database.GetUserAsync())
             {
                 if (userLogin == user.UserLogin)
                 {
+                    var favorite = (await App.Database.GetFavoriteWithChildren()).Where(z => z.fkUser == user.UserID);
+                    var meaning = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == user.fkLanguage);
+                    List<Meaning> listMeans = new List<Meaning>();
+                    foreach (var item in favorite)
+                    {
+                        foreach (var item2 in meaning)
+                        {
+                            if (item.fkMeaning == item2.MeaningID)
+                            {
+                                listMeans.Add(item2);
+                            }
+                        }
+                    }
+                    dictionaryView.ItemsSource = listMeans;
 
-                    dictionatyView.ItemsSource = (await App.Database.GetFavoriteWithChildren()).Where(z => z.meaning.dictionary.fkLanguage == user.fkLanguage);
                 }
             }
 

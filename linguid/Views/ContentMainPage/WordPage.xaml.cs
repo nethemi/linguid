@@ -34,6 +34,34 @@ namespace linguid.Views.ContentMainPage
             {
                 addFav.IsVisible = true;
             }
+
+            IsFavorite();
+        }
+
+        private async void IsFavorite()
+        {
+            var userLogin = Thread.CurrentPrincipal.Identity.Name;
+            foreach (var user in await App.Database.GetUserAsync())
+            {
+                if (userLogin == user.UserLogin)
+                {
+                    var favorite = (await App.Database.GetFavoriteWithChildren()).Where(z => z.fkUser == user.UserID);
+                    var meaning = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == user.fkLanguage);
+                    List<Meaning> listMeans = new List<Meaning>();
+                    foreach (var item in favorite)
+                    {
+                        foreach (var item2 in meaning)
+                        {
+                            if (item.fkMeaning == item2.MeaningID)
+                            {
+                                addFav.IsVisible = false;
+                                delFav.IsVisible= true;
+                            }
+                        }
+                    }
+
+                }
+            }
         }
 
         protected override async void OnAppearing()
@@ -63,22 +91,44 @@ namespace linguid.Views.ContentMainPage
 
         private async void addFavClicked(object sender, EventArgs e)
         {
-            //var item = sender as Button;
-            //var meaning = item.CommandParameter as Meaning;
-            //Favorite fav = new Favorite();
-            //fav.fkMeaning = meaning.MeaningID;
-            //var userLogin = Thread.CurrentPrincipal.Identity.Name;
-            //foreach (var user in await App.Database.GetUserAsync())
-            //{
-            //    if (userLogin == user.UserLogin)
-            //    {
-            //        fav.fkUser = user.UserID;
-            //        await App.Database.SaveFavoriteAsync(fav);
-            //    }
-            //}
+            Favorite fav = new Favorite();
+            fav.fkMeaning = meaning.MeaningID;
+            var userLogin = Thread.CurrentPrincipal.Identity.Name;
+            foreach (var user in await App.Database.GetUserAsync())
+            {
+                if (userLogin == user.UserLogin)
+                {
+                    fav.fkUser = user.UserID;
+                    await App.Database.SaveFavoriteAsync(fav);
+                }
+            }
 
-            //addFav.IsVisible = false;
-            //delFav.IsVisible = true;
+            addFav.IsVisible = false;
+            delFav.IsVisible = true;
+        }
+
+        private async void delFavClicked(object sender, EventArgs e)
+        {
+            var userLogin = Thread.CurrentPrincipal.Identity.Name;
+            foreach (var user in await App.Database.GetUserAsync())
+            {
+                if (userLogin == user.UserLogin)
+                {
+                    var result = await DisplayAlert("Удаление", $"Удалить {meaning.dictionary.Item} из избранного", "Да", "Нет");
+                    if (result)
+                    {
+                        foreach (var item in await App.Database.GetFavoriteAsync())
+                        {
+                            if (item.fkMeaning == meaning.MeaningID)
+                            {
+                                await App.Database.DeleteFavoriteAsync(item);
+                                categoryView.ItemsSource = (await App.Database.GetMbCWithChildren()).Where(z => z.fkMeaning == meaning.MeaningID);
+                            }
+                        }
+                    }
+                }
+            }
+          
         }
     }
 }
