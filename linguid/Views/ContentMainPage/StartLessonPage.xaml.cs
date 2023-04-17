@@ -60,5 +60,11 @@ namespace linguid.Views.ContentMainPage
             Meaning meaning=(Meaning)e.SelectedItem;
             await Navigation.PushAsync(new WordPage(meaning));
         }
+
+        private void StartLessonBtnClicked(object sender, EventArgs e)
+        {
+            //dictionaryView.IsVisible = false;
+            //startLessonBtn.IsVisible = false;
+        }
     }
 }
