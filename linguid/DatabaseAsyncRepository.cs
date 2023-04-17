@@ -405,6 +405,11 @@ namespace linguid
                 return await database.InsertAsync(item);
             }
         }
+
+        public async Task<List<HistoryMeaning>> GetHistoryWithChildren()
+        {
+            return await database.GetAllWithChildrenAsync<HistoryMeaning>();
+        }
         #endregion
 
         #region history_lessons

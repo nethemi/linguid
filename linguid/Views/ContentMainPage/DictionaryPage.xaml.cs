@@ -29,17 +29,28 @@ namespace linguid.Views.ContentMainPage
                 {
                     if (userLogin == user.UserLogin)
                     {
-
                         if (searchBar.Text == "")
                         {
-                            dictionatyView.ItemsSource = (await App.Database.GetFavoriteWithChildren()).Where(z => z.meaning.dictionary.fkLanguage == user.fkLanguage);
+                            recentlyView.IsVisible = true;
+                            var history = (await App.Database.GetHistoryWithChildren()).Where(z=>z.fkUser == user.UserID);
+                            var meaning = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == user.fkLanguage);
+                            List<Meaning> listMeans = new List<Meaning>();
+
+                            foreach (var item in history)
+                            {
+                                foreach (var item2 in meaning)
+                                {
+                                    if (item.fkMeaning == item2.MeaningID)
+                                    {
+                                        listMeans.Add(item2);
+                                    }
+                                }
+                            }
+                            recentlyView.ItemsSource = listMeans;
                         }
                     }
                 }
             }
-
-            
-
             base.OnAppearing();
         }
 
@@ -72,7 +83,7 @@ namespace linguid.Views.ContentMainPage
         private async void dictionatyViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
 			Meaning selected = (Meaning)e.SelectedItem;
-            Favorite favorite = new Favorite();
+            HistoryMeaning history = new HistoryMeaning();
            
             var userLogin = Thread.CurrentPrincipal.Identity.Name;
             if (userLogin != "")
@@ -81,9 +92,9 @@ namespace linguid.Views.ContentMainPage
                 {
                     if (userLogin == user.UserLogin)
                     {
-                        favorite.fkMeaning = selected.MeaningID;
-                        favorite.fkUser = user.UserID;
-                        await App.Database.SaveFavoriteAsync(favorite);
+                        history.fkMeaning = selected.MeaningID;
+                        history.fkUser = user.UserID;
+                        await App.Database.SaveHistoryAsync(history);
                     }
                 }
             }
@@ -107,6 +118,11 @@ namespace linguid.Views.ContentMainPage
             {
                 await App.Database.DeleteMeaningAsync(meaning);
             }
+        }
+
+        private void recentlyViewItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+
         }
     }
 }
