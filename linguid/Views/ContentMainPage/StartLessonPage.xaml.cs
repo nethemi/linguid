@@ -54,5 +54,11 @@ namespace linguid.Views.ContentMainPage
 
             base.OnAppearing();
         }
+
+        private async void dictionaryViewItemSelected(object sender, SelectedItemChangedEventArgs e)
+        {
+            Meaning meaning=(Meaning)e.SelectedItem;
+            await Navigation.PushAsync(new WordPage(meaning));
+        }
     }
 }

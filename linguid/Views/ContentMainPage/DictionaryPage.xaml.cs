@@ -29,25 +29,23 @@ namespace linguid.Views.ContentMainPage
                 {
                     if (userLogin == user.UserLogin)
                     {
-                        if (searchBar.Text == "")
-                        {
-                            recentlyView.IsVisible = true;
-                            var history = (await App.Database.GetHistoryWithChildren()).Where(z=>z.fkUser == user.UserID);
-                            var meaning = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == user.fkLanguage);
-                            List<Meaning> listMeans = new List<Meaning>();
+                        recentlyView.IsVisible = true;
+                        var history = (await App.Database.GetHistoryWithChildren()).Where(z => z.fkUser == user.UserID);
+                        var meaning = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == user.fkLanguage);
+                        List<Meaning> listMeans = new List<Meaning>();
 
-                            foreach (var item in history)
+                        foreach (var item in history)
+                        {
+                            foreach (var item2 in meaning)
                             {
-                                foreach (var item2 in meaning)
+                                if (item.fkMeaning == item2.MeaningID)
                                 {
-                                    if (item.fkMeaning == item2.MeaningID)
-                                    {
-                                        listMeans.Add(item2);
-                                    }
+                                    listMeans.Add(item2);
                                 }
                             }
-                            recentlyView.ItemsSource = listMeans;
                         }
+                        recentlyView.ItemsSource = listMeans;
+
                     }
                 }
             }
@@ -56,6 +54,9 @@ namespace linguid.Views.ContentMainPage
 
         private async void SearchBarTextChanged(object sender, TextChangedEventArgs e)
         {
+            recentlyView.IsVisible = false;
+            dictionatyView.ItemsSource = null;
+            recentlyViewed.IsVisible = !recentlyViewed.IsVisible;
             var userLogin = Thread.CurrentPrincipal.Identity.Name;
 			if (userLogin != "")
 			{
@@ -63,19 +64,21 @@ namespace linguid.Views.ContentMainPage
                 {
                     if (userLogin == user.UserLogin)
                     {
-                        recentlyViewed.IsVisible = !recentlyViewed.IsVisible;
-                        dictionatyView.ItemsSource = null;
                         if (searchBar.Text != "")
+                        {
                             dictionatyView.ItemsSource = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == user.fkLanguage && (z.dictionary.Item.StartsWith(e.NewTextValue) || z.transcription.TranscriptionItem.StartsWith(e.NewTextValue) || z.dictionaryRu.ItemRu.StartsWith(e.NewTextValue)));
+                        }
+                            
                     }
                 }
             }
             else
             {
-                recentlyViewed.IsVisible = !recentlyViewed.IsVisible;
-                dictionatyView.ItemsSource = null;
                 if (searchBar.Text != "")
+                {
                     dictionatyView.ItemsSource = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == 1 && (z.dictionary.Item.StartsWith(e.NewTextValue) || z.transcription.TranscriptionItem.StartsWith(e.NewTextValue) || z.dictionaryRu.ItemRu.StartsWith(e.NewTextValue)));
+                }
+                   
             }
             
 		}
@@ -100,7 +103,6 @@ namespace linguid.Views.ContentMainPage
             }
 
             await Navigation.PushAsync(new WordPage(selected));
-
         }
 
         private void editBtnClicked(object sender, EventArgs e)
@@ -120,9 +122,10 @@ namespace linguid.Views.ContentMainPage
             }
         }
 
-        private void recentlyViewItemSelected(object sender, SelectedItemChangedEventArgs e)
+        private async void recentlyViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-
+            Meaning selected = (Meaning)e.SelectedItem;
+            await Navigation.PushAsync(new WordPage(selected));
         }
     }
 }

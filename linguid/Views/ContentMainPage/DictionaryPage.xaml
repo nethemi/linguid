@@ -21,12 +21,12 @@
 
             <Label Style="{StaticResource titleTxt}" Text="Недавно просмотренные" HorizontalOptions="StartAndExpand" Padding="5" x:Name="recentlyViewed"/>
 
-            <ListView x:Name="dictionatyView" RowHeight="150" ItemsSource="{Binding}" ItemSelected="dictionatyViewItemSelected">
+            <ListView x:Name="recentlyView" RowHeight="150" ItemsSource="{Binding}" ItemSelected="recentlyViewItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
                             <ViewCell.View>
-                                <StackLayout Padding="10,10,15,10">
+                                <StackLayout Padding="10,0,10,0">
                                     <Frame HasShadow="True"
                                    xct:ShadowEffect.Color="Black"
                                    xct:ShadowEffect.OffsetY="0"
@@ -73,7 +73,6 @@
                                                  HorizontalOptions="Center" 
                                                  VerticalOptions="Center"
                                                  Clicked="delBtnClicked"/>
-
                                         </Grid>
                                     </Frame>
                                 </StackLayout>
@@ -83,7 +82,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <ListView x:Name="recentlyView" RowHeight="150" ItemsSource="{Binding}" ItemSelected="recentlyViewItemSelected" IsVisible="false">
+            <ListView x:Name="dictionatyView" RowHeight="150" ItemsSource="{Binding}" ItemSelected="dictionatyViewItemSelected" IsVisible="false">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>

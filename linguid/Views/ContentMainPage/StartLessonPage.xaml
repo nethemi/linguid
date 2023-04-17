@@ -2,7 +2,6 @@
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
              x:Class="linguid.Views.ContentMainPage.StartLessonPage"
-             xmlns:dxg="http://schemas.devexpress.com/xamarin/2014/forms/datagrid"
              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              NavigationPage.HasNavigationBar="False"
              Background="white">
@@ -24,8 +23,8 @@
                 Margin="0,0,5,0"/>
             </StackLayout>
 
-            <CollectionView x:Name="dictionaryView" ItemsSource="{Binding}">
-                <CollectionView.ItemTemplate>
+            <ListView x:Name="dictionaryView" ItemsSource="{Binding}" ItemSelected="dictionaryViewItemSelected">
+                <ListView.ItemTemplate>
                     <DataTemplate>
                         <StackLayout Padding="10,0,15,10">
                             <Frame HasShadow="True"
@@ -37,7 +36,8 @@
                          BackgroundColor="#F1F3F4" 
                          HorizontalOptions="Fill" >
                                 <Grid RowSpacing="10">
-                                    <Grid.RowDefinitio>
+                                    
+                                    <Grid.RowDefinitions>
                                         <RowDefinition/>
                                         <RowDefinition/>
                                         <RowDefinition/>
@@ -51,8 +51,8 @@
                             </Frame>
                         </StackLayout>
                     </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                </ListView.ItemTemplate>
+            </ListView>
 
 
         </StackLayout>
