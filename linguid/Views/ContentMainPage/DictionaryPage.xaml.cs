@@ -13,10 +13,34 @@ namespace linguid.Views.ContentMainPage
 	[XamlCompilation(XamlCompilationOptions.Compile)]
 	public partial class DictionaryPage : ContentPage
 	{
-		public DictionaryPage ()
-		{
-			InitializeComponent ();
+        public DictionaryPage()
+        {
+            InitializeComponent();
+            //AdminFunction();
         }
+
+        //private async void AdminFunction()
+        //{
+        //    var userLogin = Thread.CurrentPrincipal.Identity.Name;
+        //    foreach (var user in await App.Database.GetUserAsync())
+        //    {
+        //        int idUser;
+        //        if (user.UserLogin == userLogin)
+        //        {
+        //            idUser = user.UserID;
+        //            foreach (var ubr in await App.Database.GetUbRAsync())
+        //            {
+        //                if (ubr.fkUser == idUser)
+        //                {
+        //                    if (ubr.fkRole == 1)
+        //                    {
+                               
+        //                    }
+        //                }
+        //            }
+        //        }
+        //    }
+        //}
 
         protected override async void OnAppearing()
         {
@@ -120,10 +144,11 @@ namespace linguid.Views.ContentMainPage
             await Navigation.PushAsync(new WordPage(selected));
         }
 
-        private void editBtnClicked(object sender, EventArgs e)
+        private async void editBtnClicked(object sender, EventArgs e)
         {
             var item = sender as Button;
             var meaning = item.CommandParameter as Meaning;
+            await Navigation.PushAsync(new AddDataPage(meaning));
         }
 
         private async void delBtnClicked(object sender, EventArgs e)
