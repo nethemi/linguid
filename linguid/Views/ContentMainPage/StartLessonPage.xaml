@@ -37,7 +37,7 @@
                          BackgroundColor="#F1F3F4" 
                          HorizontalOptions="Fill" >
                                 <Grid RowSpacing="10">
-                                    <Grid.RowDefinitions>
+                                    <Grid.RowDefinitio>
                                         <RowDefinition/>
                                         <RowDefinition/>
                                         <RowDefinition/>
