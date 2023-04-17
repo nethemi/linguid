@@ -19,9 +19,11 @@ namespace linguid.Views.ContentMainPage
         }
         protected override async void OnAppearing()
         {
+            dictionatyView.IsVisible = false;
+            recentlyViewed.IsVisible = true;
+            recentlyView.IsVisible = true;
             await App.Database.CreateFavorite();
             await App.Database.CreateMeaning();
-
             var userLogin = Thread.CurrentPrincipal.Identity.Name;
             if (userLogin != "")
             {
@@ -29,7 +31,7 @@ namespace linguid.Views.ContentMainPage
                 {
                     if (userLogin == user.UserLogin)
                     {
-                        recentlyView.IsVisible = true;
+                        
                         var history = (await App.Database.GetHistoryWithChildren()).Where(z => z.fkUser == user.UserID);
                         var meaning = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == user.fkLanguage);
                         List<Meaning> listMeans = new List<Meaning>();
@@ -54,9 +56,10 @@ namespace linguid.Views.ContentMainPage
 
         private async void SearchBarTextChanged(object sender, TextChangedEventArgs e)
         {
+            recentlyViewed.IsVisible = false;
             recentlyView.IsVisible = false;
+            dictionatyView.IsVisible = true;
             dictionatyView.ItemsSource = null;
-            recentlyViewed.IsVisible = !recentlyViewed.IsVisible;
             var userLogin = Thread.CurrentPrincipal.Identity.Name;
 			if (userLogin != "")
 			{
@@ -78,14 +81,24 @@ namespace linguid.Views.ContentMainPage
                 {
                     dictionatyView.ItemsSource = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == 1 && (z.dictionary.Item.StartsWith(e.NewTextValue) || z.transcription.TranscriptionItem.StartsWith(e.NewTextValue) || z.dictionaryRu.ItemRu.StartsWith(e.NewTextValue)));
                 }
-                   
+  
+
+
+            }
+            if(searchBar.Text == "")
+            {
+                dictionatyView.IsVisible = false;
+                recentlyViewed.IsVisible = true;
+                recentlyView.IsVisible = true;
             }
             
 		}
 
         private async void dictionatyViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
-			Meaning selected = (Meaning)e.SelectedItem;
+            dictionatyView.IsVisible = true;
+            recentlyView.IsVisible = false;
+            Meaning selected = (Meaning)e.SelectedItem;
             HistoryMeaning history = new HistoryMeaning();
            
             var userLogin = Thread.CurrentPrincipal.Identity.Name;
@@ -124,6 +137,9 @@ namespace linguid.Views.ContentMainPage
 
         private async void recentlyViewItemSelected(object sender, SelectedItemChangedEventArgs e)
         {
+            dictionatyView.IsVisible = false;
+            recentlyView.IsVisible = true;
+            recentlyViewed.IsVisible = true;
             Meaning selected = (Meaning)e.SelectedItem;
             await Navigation.PushAsync(new WordPage(selected));
         }

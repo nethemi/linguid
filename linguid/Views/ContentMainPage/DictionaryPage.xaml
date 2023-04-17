@@ -21,7 +21,7 @@
 
             <Label Style="{StaticResource titleTxt}" Text="Недавно просмотренные" HorizontalOptions="StartAndExpand" Padding="5" x:Name="recentlyViewed"/>
 
-            <ListView x:Name="recentlyView" RowHeight="150" ItemsSource="{Binding}" ItemSelected="recentlyViewItemSelected">
+            <ListView x:Name="recentlyView" RowHeight="150" ItemsSource="{Binding}" ItemSelected="recentlyViewItemSelected" >
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
@@ -82,7 +82,7 @@
                 </ListView.ItemTemplate>
             </ListView>
 
-            <ListView x:Name="dictionatyView" RowHeight="150" ItemsSource="{Binding}" ItemSelected="dictionatyViewItemSelected" IsVisible="false">
+            <ListView x:Name="dictionatyView" RowHeight="150" ItemsSource="{Binding}" ItemSelected="dictionatyViewItemSelected">
                 <ListView.ItemTemplate>
                     <DataTemplate>
                         <ViewCell>
