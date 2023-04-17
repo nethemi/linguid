@@ -17,6 +17,7 @@ namespace linguid.Views.ContentMainPage
 		{
 			InitializeComponent ();
         }
+
         protected override async void OnAppearing()
         {
             dictionatyView.IsVisible = false;
@@ -32,7 +33,7 @@ namespace linguid.Views.ContentMainPage
                     if (userLogin == user.UserLogin)
                     {
                         
-                        var history = (await App.Database.GetHistoryWithChildren()).Where(z => z.fkUser == user.UserID);
+                        var history = (await App.Database.GetHistoryWithChildren()).Where(z => z.fkUser == user.UserID).OrderByDescending(x=>x.Date);
                         var meaning = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == user.fkLanguage);
                         List<Meaning> listMeans = new List<Meaning>();
 
@@ -110,6 +111,7 @@ namespace linguid.Views.ContentMainPage
                     {
                         history.fkMeaning = selected.MeaningID;
                         history.fkUser = user.UserID;
+                        history.Date = DateTime.Now;
                         await App.Database.SaveHistoryAsync(history);
                     }
                 }
