@@ -10,7 +10,82 @@
         <StackLayout xct:ShadowEffect.Color="Black"
                          xct:ShadowEffect.OffsetY="0"   
                          xct:ShadowEffect.Radius="1">
-            
+
+            <StackLayout Orientation="Vertical" Padding="0,10,0,0" x:Name="lessonContent" IsVisible="false">
+
+                <Label Style="{StaticResource titleTxt}" Text="УРОК ПРОЙДЕН" HorizontalOptions="Center" x:Name="lessonCompleted" FontSize="40" IsVisible="false"/>
+
+                <Label Style="{StaticResource titleTxt}" Text="{Binding dictionary.Item}" HorizontalOptions="Center" x:Name="word" FontSize="40" />
+                <Label Style="{StaticResource titleTxt}" Text="{Binding transcription.TranscriptionItem}" HorizontalOptions="Center" x:Name="transcription" FontSize="20"/>
+
+                <Button Style="{StaticResource choiceBtn}"
+                    x:Name="translate_one"
+                        ContentLayout="Bottom"
+                        Padding="10"
+                        Margin="20,20,20,0"
+                        HeightRequest="100"
+                        Clicked="TranslateOneClicked"/>
+                <Button Style="{StaticResource choiceBtn}"
+                    x:Name="translate_two"
+                        ContentLayout="Bottom"
+                        Padding="10"
+                        Margin="20,20,20,0"
+                        HeightRequest="100"
+                        Clicked="TranslateTwoClicked"/>
+                <Button Style="{StaticResource choiceBtn}"
+                    x:Name="translate_three"
+                        ContentLayout="Bottom"
+                        Padding="10"
+                        Margin="20,20,20,0"
+                        HeightRequest="100"
+                        Clicked="TranslateThreeClicked"/>
+                
+
+                <!--
+
+                <RadioButton
+                    TextColor="#666666"
+                    TextTransform="None"
+                    WidthRequest="320"
+                    BorderColor="Transparent"
+                    BorderWidth="0"
+                    CornerRadius="16"
+                    Background="#F1F3F4"
+                    x:Name="translate_one"
+                        Padding="10"
+                        Margin="20,20,20,0"
+                        HeightRequest="90"/>
+                <RadioButton
+                    TextColor="#666666"
+                    TextTransform="None"
+                    WidthRequest="320"
+                    BorderColor="Transparent"
+                    BorderWidth="0"
+                    CornerRadius="16"
+                    Background="#F1F3F4"
+                    x:Name="translate_two"
+                        Padding="10"
+                        Margin="20,20,20,0"
+                        HeightRequest="90"/>
+                <RadioButton
+                    TextColor="#666666"
+                    TextTransform="None"
+                    WidthRequest="320"
+                    BorderColor="Transparent"
+                    BorderWidth="0"
+                    CornerRadius="16"
+                    Background="#F1F3F4"
+                    x:Name="translate_three"
+                        Padding="10"
+                        Margin="20,20,20,0"
+                        HeightRequest="90"/>
+                -->
+               
+
+            </StackLayout>
+
+
+
             <StackLayout Orientation="Horizontal" Padding="10,10,10,10">
                 <Label Style="{StaticResource titleTxt}" Text="{Binding CategoryName}" HorizontalOptions="StartAndExpand" Padding="5" x:Name="lesson"/>
                 <Button Style="{StaticResource mainBtn}"
