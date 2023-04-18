@@ -49,28 +49,7 @@
                                             <Label Style="{StaticResource gridTxt}" Text="{Binding dictionary.Item}" Grid.Row="0" Grid.Column="0"/>
                                             <Label Style="{StaticResource gridTxt}" Text="{Binding transcription.TranscriptionItem}" Grid.Row="1" Grid.Column="0"/>
                                             <Label Style="{StaticResource gridTxt}" Text="{Binding dictionaryRu.ItemRu}" Grid.Row="2" Grid.Column="0"/>
-
-
-                                            <Button ImageSource="{local:ImageResource linguid.Images.edit.png}"
-                                                 BackgroundColor="Transparent"
-                                                    CommandParameter="{Binding .}"
-                                                 WidthRequest="40" 
-                                                 HeightRequest="40" 
-                                                 Grid.Column="1" 
-                                                 Grid.RowSpan="3" 
-                                                 HorizontalOptions="Center" 
-                                                 VerticalOptions="Center"
-                                                 Clicked="editBtnClicked"/>
-                                            <Button ImageSource="{local:ImageResource linguid.Images.trash.png}" 
-                                                    CommandParameter="{Binding .}"
-                                                 BackgroundColor="Transparent"
-                                                 WidthRequest="40" 
-                                                 HeightRequest="40" 
-                                                 Grid.Column="2" 
-                                                 Grid.RowSpan="3" 
-                                                 HorizontalOptions="Center" 
-                                                 VerticalOptions="Center"
-                                                 Clicked="delBtnClicked"/>
+                                            
                                         </Grid>
                                     </Frame>
                                 </StackLayout>
@@ -108,28 +87,6 @@
                                             <Label Style="{StaticResource gridTxt}" Text="{Binding dictionary.Item}" Grid.Row="0" Grid.Column="0"/>
                                             <Label Style="{StaticResource gridTxt}" Text="{Binding transcription.TranscriptionItem}" Grid.Row="1" Grid.Column="0"/>
                                             <Label Style="{StaticResource gridTxt}" Text="{Binding dictionaryRu.ItemRu}" Grid.Row="2" Grid.Column="0"/>
-
-
-                                            <Button ImageSource="{local:ImageResource linguid.Images.edit.png}"
-                                                 BackgroundColor="Transparent"
-                                                    CommandParameter="{Binding .}"
-                                                 WidthRequest="40" 
-                                                 HeightRequest="40" 
-                                                 Grid.Column="1" 
-                                                 Grid.RowSpan="3" 
-                                                 HorizontalOptions="Center" 
-                                                 VerticalOptions="Center"
-                                                 Clicked="editBtnClicked"/>
-                                            <Button ImageSource="{local:ImageResource linguid.Images.trash.png}" 
-                                                    CommandParameter="{Binding .}"
-                                                 BackgroundColor="Transparent"
-                                                 WidthRequest="40" 
-                                                 HeightRequest="40" 
-                                                 Grid.Column="2" 
-                                                 Grid.RowSpan="3" 
-                                                 HorizontalOptions="Center" 
-                                                 VerticalOptions="Center"
-                                                 Clicked="delBtnClicked"/>
 
                                         </Grid>
                                     </Frame>

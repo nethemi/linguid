@@ -72,8 +72,6 @@
 
         <Button Style="{StaticResource mainBtn}" Text="ПРОПУСТИТЬ" HorizontalOptions="Center" WidthRequest="265" 
                 Clicked="SkipBtnClick"/>
-        <Button Style="{StaticResource mainBtn}" Text="Тест" HorizontalOptions="Center" WidthRequest="265" 
-                Clicked="TestBtnClick" />
     </StackLayout>
 
 

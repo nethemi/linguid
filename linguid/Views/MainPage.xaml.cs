@@ -1,4 +1,5 @@
-﻿using System;
+﻿using linguid.Views.ContentMainPage;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -22,8 +23,39 @@ namespace linguid.Views
                 favoritePage.IsEnabled = false;
                 lessonsPage.IsEnabled = false;
             }
+            else
+            {
+                IsAdmin(userLogin);
+            }
 
             GetLanguage();
+        }
+
+        private async void IsAdmin(string userLogin)
+        {
+            foreach (var user in await App.Database.GetUserAsync())
+            {
+                int idUser;
+                if (user.UserLogin == userLogin)
+                {
+                    idUser = user.UserID;
+                    foreach (var ubr in await App.Database.GetUbRAsync())
+                    {
+                        if (ubr.fkUser == idUser)
+                        {
+                            if (ubr.fkRole == 1)
+                            {
+                                await dictionaryPage.PushAsync(new DictionaryAdminPage());
+                            }
+                            else
+                            {
+                                await dictionaryPage.PushAsync(new DictionaryPage());
+                            }
+                        }
+                    }
+                }
+            }
+            
         }
 
         public async void GetLanguage()

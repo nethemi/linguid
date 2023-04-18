@@ -83,13 +83,18 @@ namespace linguid.Views
                 
                 if(!flagUser && checkPass.Text == userPass.Text)
                 {
-                    await App.Database.SaveUserAsync(new User
-                    {
-                        UserName = userName.Text,
-                        UserLogin = userLogin.Text,
-                        UserPassword = userPass.Text,
-                        fkLanguage = 1
-                    });
+                    User user = new User();
+                    user.UserName = userName.Text;
+                    user.UserLogin = userLogin.Text;
+                    user.UserPassword = userPass.Text;
+                    user.fkLanguage = 1;
+                    await App.Database.SaveUserAsync(user);
+
+                    UserByRole userByRole = new UserByRole();
+                    userByRole.fkUser = user.UserID;
+                    userByRole.fkRole = 2;
+                    await App.Database.SaveUbRAsync(userByRole);
+
                     Thread.CurrentPrincipal = new GenericPrincipal(
                     new GenericIdentity(userLogin.Text), null);
 

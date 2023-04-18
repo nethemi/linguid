@@ -24,41 +24,32 @@ namespace linguid.Views.ContentMainPage
             itemRu.Text = selected.dictionaryRu.ItemRu;
             transcription.Text = selected.transcription.TranscriptionItem;
 
+            IsFavorite();
+        }
+
+        private async void IsFavorite()
+        {
             var userLogin = Thread.CurrentPrincipal.Identity.Name;
             if (userLogin == "")
             {
                 addFav.IsVisible = false;
-                delFav.IsEnabled = false;
             }
             else
             {
-                addFav.IsVisible = true;
-                IsFavorite(userLogin);
-            }
-
-        }
-
-        private async void IsFavorite(string userLogin)
-        {
-            foreach (var user in await App.Database.GetUserAsync())
-            {
-                if (userLogin == user.UserLogin)
+                foreach (var user in await App.Database.GetUserAsync())
                 {
-                    var favorite = (await App.Database.GetFavoriteWithChildren()).Where(z => z.fkUser == user.UserID);
-                    var meaning = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == user.fkLanguage);
-                    List<Meaning> listMeans = new List<Meaning>();
-                    foreach (var item in favorite)
+                    if (userLogin == user.UserLogin)
                     {
-                        foreach (var item2 in meaning)
+                        var favorite = (await App.Database.GetFavoriteWithChildren()).Where(z => z.fkUser == user.UserID);
+                        foreach (var item in favorite)
                         {
-                            if (item.fkMeaning == item2.MeaningID)
+                            if (item.fkMeaning == meaning.MeaningID)
                             {
                                 addFav.IsVisible = false;
-                                delFav.IsVisible= true;
+                                delFav.IsVisible = true;
                             }
                         }
                     }
-
                 }
             }
         }
@@ -122,6 +113,8 @@ namespace linguid.Views.ContentMainPage
                             {
                                 await App.Database.DeleteFavoriteAsync(item);
                                 categoryView.ItemsSource = (await App.Database.GetMbCWithChildren()).Where(z => z.fkMeaning == meaning.MeaningID);
+                                delFav.IsVisible=false;
+                                addFav.IsVisible = true;
                             }
                         }
                     }

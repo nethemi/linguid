@@ -69,7 +69,7 @@ namespace linguid.Views.ContentMainPage
             Random rnd = new Random();
             int randIndex = 0;
             int randomBtn = rnd.Next(1, 4);
-            if (index < listMeans.Count() - 1)
+            if (index < listMeans.Count()-1)
             {
                 switch (randomBtn)
                 {

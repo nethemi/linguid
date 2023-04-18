@@ -16,31 +16,8 @@ namespace linguid.Views.ContentMainPage
         public DictionaryPage()
         {
             InitializeComponent();
-            //AdminFunction();
         }
 
-        //private async void AdminFunction()
-        //{
-        //    var userLogin = Thread.CurrentPrincipal.Identity.Name;
-        //    foreach (var user in await App.Database.GetUserAsync())
-        //    {
-        //        int idUser;
-        //        if (user.UserLogin == userLogin)
-        //        {
-        //            idUser = user.UserID;
-        //            foreach (var ubr in await App.Database.GetUbRAsync())
-        //            {
-        //                if (ubr.fkUser == idUser)
-        //                {
-        //                    if (ubr.fkRole == 1)
-        //                    {
-                               
-        //                    }
-        //                }
-        //            }
-        //        }
-        //    }
-        //}
 
         protected override async void OnAppearing()
         {
@@ -56,8 +33,8 @@ namespace linguid.Views.ContentMainPage
                 {
                     if (userLogin == user.UserLogin)
                     {
-                        
-                        var history = (await App.Database.GetHistoryWithChildren()).Where(z => z.fkUser == user.UserID).OrderByDescending(x=>x.Date);
+
+                        var history = (await App.Database.GetHistoryWithChildren()).Where(z => z.fkUser == user.UserID).OrderByDescending(x => x.Date);
                         var meaning = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == user.fkLanguage);
                         List<Meaning> listMeans = new List<Meaning>();
 
@@ -72,10 +49,10 @@ namespace linguid.Views.ContentMainPage
                             }
                         }
                         recentlyView.ItemsSource = listMeans;
-
                     }
                 }
             }
+            else recentlyViewed.Text = "Войите, чтобы иметь больше возможностей";
             base.OnAppearing();
         }
 
@@ -106,9 +83,6 @@ namespace linguid.Views.ContentMainPage
                 {
                     dictionatyView.ItemsSource = (await App.Database.GetMeaningWithChildren()).Where(z => z.dictionary.fkLanguage == 1 && (z.dictionary.Item.StartsWith(e.NewTextValue) || z.transcription.TranscriptionItem.StartsWith(e.NewTextValue) || z.dictionaryRu.ItemRu.StartsWith(e.NewTextValue)));
                 }
-  
-
-
             }
             if(searchBar.Text == "")
             {
@@ -142,24 +116,6 @@ namespace linguid.Views.ContentMainPage
             }
 
             await Navigation.PushAsync(new WordPage(selected));
-        }
-
-        private async void editBtnClicked(object sender, EventArgs e)
-        {
-            var item = sender as Button;
-            var meaning = item.CommandParameter as Meaning;
-            await Navigation.PushAsync(new AddDataPage(meaning));
-        }
-
-        private async void delBtnClicked(object sender, EventArgs e)
-        {
-            var item = sender as Button;
-            var meaning = item.CommandParameter as Meaning;
-            var result = await DisplayAlert("Удаление", $"Удалить {meaning.dictionary.Item} из базы данных", "Да", "Нет");
-            if (result)
-            {
-                await App.Database.DeleteMeaningAsync(meaning);
-            }
         }
 
         private async void recentlyViewItemSelected(object sender, SelectedItemChangedEventArgs e)

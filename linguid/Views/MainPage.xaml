@@ -12,7 +12,8 @@
             SelectedTabColor="#ffffff"
             UnselectedTabColor="#C4A3FF"
             NavigationPage.HasBackButton="False"
-            Background="#ffffff">
+            Background="#ffffff"
+            x:Name="mainTab">
 
     <NavigationPage.TitleView>
         <StackLayout Orientation="Horizontal">
@@ -44,7 +45,11 @@
     <TabbedPage.Children>
 
         <!--Dictionary-->
-        <content:DictionaryPage Title="Главная" IconImageSource="{local:ImageResource linguid.Images.home.png}"/>
+        <NavigationPage Title="Главная" IconImageSource="{local:ImageResource linguid.Images.home.png}" x:Name="dictionaryPage">
+            <x:Arguments>
+
+            </x:Arguments>
+        </NavigationPage>
 
         <!--Favorite-->
         <content:FavoritePage x:Name="favoritePage" Title="Избранное" IconImageSource="{local:ImageResource linguid.Images.favorite.png}"/>

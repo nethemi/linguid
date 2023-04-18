@@ -27,6 +27,7 @@ namespace linguid.Views.ContentMainPage
                 {
                     user.UserPassword= newPass.Text;
                     await App.Database.SaveUserAsync(user);
+                    await DisplayAlert("Изменение пароля", $"Пароль успешно изменен!", "ОК");
                     await Navigation.PushAsync(new ProfilePage());
                 }
             }

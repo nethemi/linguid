@@ -27,7 +27,8 @@ namespace linguid.Views.ContentMainPage
 				{
 					user.UserName = newName.Text;
                     await App.Database.SaveUserAsync(user);
-					await Navigation.PushAsync(new ProfilePage());
+                    await DisplayAlert("Изменение имени", $"Имя успешно изменено!", "ОК");
+                    await Navigation.PushAsync(new ProfilePage());
                 }
 			}
         }

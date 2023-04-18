@@ -31,11 +31,6 @@ namespace linguid.Views
             await Navigation.PushAsync(new RegPage());
         }
 
-        private async void TestBtnClick(object sender, EventArgs e)
-        {
-            await Navigation.PushAsync(new TestPage());
-        }
-
         private async void LoginClick(object sender, EventArgs e)
         {
             userLogin.HasError = false;
