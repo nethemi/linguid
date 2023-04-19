@@ -281,6 +281,25 @@ namespace linguid.Views.ContentMainPage
                     resultMessage.Text = "Повторите слова и попробуйте снова";
                     resultScoreFrame.BackgroundColor = Color.FromHex("FF6D60");
                 }
+
+                HistoryLesson lesson = new HistoryLesson();
+                var userLogin = Thread.CurrentPrincipal.Identity.Name;
+                foreach (var user in await App.Database.GetUserAsync())
+                {
+                    if (userLogin == user.UserLogin)
+                    {
+                        foreach( var MbC in await App.Database.GetMbCAsync())
+                        {
+                            if (MbC.fkCategory == _category.CategoryID)
+                            {
+                                lesson.fkUser = user.UserID;
+                                lesson.fkMbC = MbC.MbCID;
+                                lesson.Date = DateTime.Now;
+                                await App.Database.SaveLessonAsync(lesson);
+                            }
+                        }
+                    }
+                }
             }
             else
                 RandomWords(ref listMeans);

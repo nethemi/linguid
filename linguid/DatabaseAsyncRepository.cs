@@ -423,6 +423,11 @@ namespace linguid
                 return await database.InsertAsync(item);
             }
         }
+
+        public async Task<List<HistoryLesson>> GetLessonWithChildren()
+        {
+            return await database.GetAllWithChildrenAsync<HistoryLesson>();
+        }
         #endregion
 
         #region favorite
