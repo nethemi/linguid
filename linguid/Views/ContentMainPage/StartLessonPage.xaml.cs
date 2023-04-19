@@ -156,6 +156,10 @@ namespace linguid.Views.ContentMainPage
 
         }
 
+        private  async void ReturnToLessonsClick(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new LessonPage());
+        }
         private void StartLessonBtnClicked(object sender, EventArgs e)
         {
             dictionaryView.IsVisible = false;
@@ -177,12 +181,12 @@ namespace linguid.Views.ContentMainPage
             translate_three.IsEnabled = false;
             if (listMeans.ElementAt(index).dictionaryRu.ItemRu == translate_one.Text)
             {
-                translate_one.Background = Color.LightGreen;
+                translate_one.Background = Color.FromHex("98D8AA");
                 countTrueWords++;
             }
             else
             {
-                translate_one.Background = Color.Red;
+                translate_one.Background = Color.FromHex("FF6D60");
                 countFalseWords++;
             }
 
@@ -206,18 +210,22 @@ namespace linguid.Views.ContentMainPage
                     endLesson.IsVisible = true;
                     resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
                     resultMessage.Text = "Отлично";
+                    resultScoreFrame.BackgroundColor = Color.FromHex("98D8AA");
                 }
                 if(countFalseWords >=1 && countFalseWords <= 4)
                 {
                     endLesson.IsVisible = true;
                     resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
                     resultMessage.Text = "Хорошо";
+                    resultScoreFrame.BackgroundColor = Color.FromHex("FFFBAC");
                 }   
                 if(countFalseWords >=5)
                 {
                     endLesson.IsVisible = true;
                     resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
                     resultMessage.Text = "Повторите слова и попробуйте снова";
+                    resultScoreFrame.BackgroundColor = Color.FromHex("FF6D60");
+                    
                 }
             }
             else
@@ -230,12 +238,12 @@ namespace linguid.Views.ContentMainPage
             translate_three.IsEnabled = false;
             if (listMeans.ElementAt(index).dictionaryRu.ItemRu == translate_two.Text)
             {
-                translate_two.Background = Color.LightGreen;
+                translate_two.Background = Color.FromHex("98D8AA");
                 countTrueWords++;
             }
             else
             {
-                translate_two.Background = Color.Red;
+                translate_two.Background = Color.FromHex("FF6D60");
                 countFalseWords++;
             }
             Random rnd = new Random();
@@ -257,18 +265,21 @@ namespace linguid.Views.ContentMainPage
                     endLesson.IsVisible = true;
                     resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
                     resultMessage.Text = "Отлично";
+                    resultScoreFrame.BackgroundColor = Color.FromHex("98D8AA");
                 }
                 if (countFalseWords >= 1 && countFalseWords <= 4)
                 {
                     endLesson.IsVisible = true;
                     resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
                     resultMessage.Text = "Хорошо";
+                    resultScoreFrame.BackgroundColor = Color.FromHex("FFFBAC");
                 }
                 if (countFalseWords >= 5)
                 {
                     endLesson.IsVisible = true;
                     resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
                     resultMessage.Text = "Повторите слова и попробуйте снова";
+                    resultScoreFrame.BackgroundColor = Color.FromHex("FF6D60");
                 }
             }
             else
@@ -281,12 +292,12 @@ namespace linguid.Views.ContentMainPage
             translate_two.IsEnabled = false;
             if (listMeans.ElementAt(index).dictionaryRu.ItemRu == translate_three.Text)
             {
-                translate_three.Background = Color.LightGreen;
+                translate_three.Background = Color.FromHex("98D8AA");
                 countTrueWords++;
             }
             else
             {
-                translate_three.Background = Color.Red;
+                translate_three.Background = Color.FromHex("FF6D60");
                 countFalseWords++;
             }
 
@@ -309,18 +320,21 @@ namespace linguid.Views.ContentMainPage
                     endLesson.IsVisible = true;
                     resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
                     resultMessage.Text = "Отлично";
+                    resultScoreFrame.BackgroundColor = Color.FromHex("98D8AA");
                 }
                 if (countFalseWords >= 1 && countFalseWords <= 4)
                 {
                     endLesson.IsVisible = true;
                     resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
                     resultMessage.Text = "Хорошо";
+                    resultScoreFrame.BackgroundColor = Color.FromHex("FFFBAC");
                 }
                 if (countFalseWords >= 5)
                 {
                     endLesson.IsVisible = true;
                     resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
                     resultMessage.Text = "Повторите слова и попробуйте снова";
+                    resultScoreFrame.BackgroundColor = Color.FromHex("FF6D60");
                 }
             }
             else
