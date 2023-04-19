@@ -11,31 +11,31 @@
         <StackLayout>
             <Grid>
                 <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*"/>
-                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="300"/>
+                    <ColumnDefinition Width="200"/>
                 </Grid.ColumnDefinitions>
 
-                <CollectionView x:Name="lessonView" ItemsSource="{Binding}" Grid.Column="0" Margin="20,0,0,5">
+                <CollectionView x:Name="lessonView" ItemsSource="{Binding}" Grid.Column="0" Margin="10,0,0,5">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Grid RowSpacing="5">
+                            <Grid>
                                 <Grid.ColumnDefinitions>
-                                    <ColumnDefinition Width="*"/>
-                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="100"/>
+                                    <ColumnDefinition Width="150"/>
                                 </Grid.ColumnDefinitions>
 
-                                <Label Style="{StaticResource gridTxt}" Text="Урок:" Grid.Column="0"/>
-                                <Label Style="{StaticResource gridTxt}" Text="{Binding category.CategoryName}" Grid.Column="1" Padding="-40,0"/>
+                                <Label Style="{StaticResource gridTxt}" FontSize="16" Text="Урок:" Grid.Column="0"/>
+                                <Label Style="{StaticResource gridTxt}" FontSize="16" Text="{Binding category.CategoryName}" Grid.Column="1" Padding="-60,0,0,5"/>
 
                             </Grid>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>
 
-                <CollectionView x:Name="dateView" ItemsSource="{Binding}" Grid.Column="1" Margin="50,0,0,0">
+                <CollectionView x:Name="dateView" ItemsSource="{Binding}" Grid.Column="1" Margin="-80,0,0,0">
                     <CollectionView.ItemTemplate>
                         <DataTemplate>
-                            <Label Style="{StaticResource gridTxt}" Text="{Binding Date, StringFormat='{0:dd MMMM yyyy}'}" Grid.Column="1" Padding="0,0,0,0"/>
+                            <Label Style="{StaticResource gridTxt}" FontSize="16" Text="{Binding Date, StringFormat='{0:dd MMMM yyyy}'}" Grid.Column="1" Padding="0,0,0,5"/>
                         </DataTemplate>
                     </CollectionView.ItemTemplate>
                 </CollectionView>

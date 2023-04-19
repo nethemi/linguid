@@ -29,15 +29,15 @@ namespace linguid.Views.ContentMainPage
                     {
                         var lesson = (await App.Database.GetLessonWithChildren()).Where(z => z.fkUser == user.UserID).OrderByDescending(x => x.Date);
                         var mbc = await App.Database.GetMbCWithChildren();
+
                         List<MeaningByCategory> byCategories = new List<MeaningByCategory>();
+
                         foreach (var l in lesson)
                         {
                             foreach (var m in mbc)
                             {
                                 if (l.fkMbC == m.MbCID)
-                                {
                                     byCategories.Add(m);
-                                }
                             }
                         }
 
