@@ -9,37 +9,39 @@
              Background="white">
     <ContentPage.Content>
         <StackLayout>
-            <CollectionView x:Name="lessonView" ItemsSource="{Binding}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Padding="10,0,10,0">
-                            <Frame HasShadow="True"
-                                   xct:ShadowEffect.Color="Black"
-                                   xct:ShadowEffect.OffsetY="0"
-                                   xct:ShadowEffect.Radius="4"
-                                   HeightRequest="100"
-                                   CornerRadius="15"
-                                   BackgroundColor="#F1F3F4">
-                                <Grid RowSpacing="5">
-                                    <Grid.RowDefinitions>
-                                        <RowDefinition Height="*"/>
-                                        <RowDefinition Height="*"/>
-                                    </Grid.RowDefinitions>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="*"/>
-                                        <ColumnDefinition Width="*"/>
-                                    </Grid.ColumnDefinitions>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="*"/>
+                </Grid.ColumnDefinitions>
 
-                                    <Label Style="{StaticResource gridTxt}" Text="Урок: " Grid.Row="0" Grid.Column="0"/>
-                                    <Label Style="{StaticResource gridTxt}" Text="{Binding Category}" Grid.Row="1" Grid.Column="0"/>
-                                    <Label Style="{StaticResource gridTxt}" Text="{Binding Date, StringFormat='{0:dd MMMM yyyy}'}" Grid.Column="1" Grid.RowSpan="2"/>
+                <CollectionView x:Name="lessonView" ItemsSource="{Binding}" Grid.Column="0" Margin="20,0,0,5">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid RowSpacing="5">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="*"/>
+                                    <ColumnDefinition Width="*"/>
+                                </Grid.ColumnDefinitions>
 
-                                </Grid>
-                            </Frame>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+                                <Label Style="{StaticResource gridTxt}" Text="Урок:" Grid.Column="0"/>
+                                <Label Style="{StaticResource gridTxt}" Text="{Binding category.CategoryName}" Grid.Column="1" Padding="-40,0"/>
+
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <CollectionView x:Name="dateView" ItemsSource="{Binding}" Grid.Column="1" Margin="50,0,0,0">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Style="{StaticResource gridTxt}" Text="{Binding Date, StringFormat='{0:dd MMMM yyyy}'}" Grid.Column="1" Padding="0,0,0,0"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </Grid>
+
 
         </StackLayout>
     </ContentPage.Content>

@@ -428,14 +428,6 @@ namespace linguid
         {
             return await database.GetAllWithChildrenAsync<HistoryLesson>();
         }
-
-        public async Task<List<HistoryLesson>> GetLessonWith()
-        {
-            return await database.QueryAsync<HistoryLesson>(@"select Category.CategoryName, HistoryLesson.Date, HistoryLesson.fkUser from HistoryLesson
-INNER join MeaningByCategory on HistoryLesson.fkMbC = MeaningByCategory.MbCID
-INNER join Category on Category.CategoryID = MeaningByCategory.fkCategory
-");
-        }
         #endregion
 
         #region favorite
