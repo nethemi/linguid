@@ -112,11 +112,18 @@ namespace linguid.Views.ContentMainPage
         {
             var item = sender as Button;
             var meaning = item.CommandParameter as Meaning;
-            meaning = await App.Database.GetMeaningWith(meaning.MeaningID);
             var result = await DisplayAlert("Удаление", $"Удалить {meaning.dictionary.Item} из базы данных", "Да", "Нет");
             if (result)
             {
-                await App.Database.DeleteMeaning(meaning);
+                foreach (var history in await App.Database.GetHistoryAsync())
+                {
+                    if (history.fkMeaning == meaning.MeaningID) await App.Database.DeleteHistoryAsync(history);
+                }
+                foreach (var favorit in await App.Database.GetFavoriteAsync())
+                {
+                    if (favorit.fkMeaning == meaning.MeaningID) await App.Database.DeleteFavoriteAsync(favorit);
+                }
+                await App.Database.DeleteMeaningAsync(meaning);
                 await DisplayAlert("Удаление", $"Значение успешно удалено из базы данных", "ОК");
                 OnAppearing();
             }

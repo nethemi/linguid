@@ -54,6 +54,7 @@ namespace linguid.Views.ContentMainPage
             await DisplayAlert("Добавление в базу данных", $"Значение слова {dictionary.Item} успешно доавлено в базу данных!", "ОК");
 
             await Navigation.PushAsync(new MainPage());
+            Navigation.RemovePage(this);
         }
     }
 }

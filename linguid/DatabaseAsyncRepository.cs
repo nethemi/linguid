@@ -264,19 +264,9 @@ namespace linguid
             return await database.GetAsync<Meaning>(id);
         }
 
-        public async Task<Meaning> GetMeaningWith(int id)
+        public async Task<int> DeleteMeaningAsync(Meaning item)
         {
-            return await database.GetWithChildrenAsync<Meaning>(id, recursive: true);
-        }
-
-        public SQLiteAsyncConnection GetDatabase()
-        {
-            return database;
-        }
-
-        public Task DeleteMeaning(Meaning meaning)
-        {
-            return database.DeleteAsync(meaning, recursive: true);
+            return await database.DeleteAsync(item);
         }
         public async Task<int> SaveMeaningAsync(Meaning item)
         {
