@@ -52,7 +52,11 @@ namespace linguid.Views.ContentMainPage
                     }
                 }
             }
-            else recentlyViewed.Text = "Войдите, чтобы иметь больше возможностей";
+            else
+            { 
+                recentlyViewed.IsEnabled = false;
+                recentlyViewed.Text = "Войдите, чтобы иметь больше возможностей"; 
+            }
             base.OnAppearing();
         }
 
@@ -125,6 +129,31 @@ namespace linguid.Views.ContentMainPage
             recentlyViewed.IsVisible = true;
             Meaning selected = (Meaning)e.SelectedItem;
             await Navigation.PushAsync(new WordPage(selected));
+        }
+
+        private async void recentlyViewedClicked(object sender, EventArgs e)
+        {
+            var result = await DisplayAlert("Очистить сторию", $"Вы точно хотите очистить историю?", "Да", "Нет");
+            if (result)
+            {
+                var userLogin = Thread.CurrentPrincipal.Identity.Name;
+                var history = await App.Database.GetHistoryAsync();
+                foreach (var user in await App.Database.GetUserAsync())
+                {
+                    if (userLogin == user.UserLogin)
+                    {
+                        foreach (var item in history)
+                        {
+                            if (item.fkUser == user.UserID)
+                            {
+                                await App.Database.DeleteHistoryAsync(item);
+                                OnAppearing();
+                            }
+                        }
+                    }
+                }
+            }
+            
         }
     }
 }

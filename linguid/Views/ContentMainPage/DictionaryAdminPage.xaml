@@ -19,7 +19,8 @@
                 <SearchBar Style="{StaticResource searchBox}" TextChanged="SearchBarTextChanged" x:Name="searchBar"/>
             </Frame>
 
-            <Label Style="{StaticResource titleTxt}" Text="Недавно просмотренные" HorizontalOptions="StartAndExpand" Padding="5" x:Name="recentlyViewed"/>
+            <Button Style="{StaticResource regBtn}" Text="Недавно просмотренные (нажмите,чтобы очистить)" HorizontalOptions="StartAndExpand" 
+                    Padding="-10,5,80,10" x:Name="recentlyViewed" Clicked="recentlyViewedClicked" FontSize="16"/>
 
             <ListView x:Name="recentlyView" RowHeight="150" ItemsSource="{Binding}" ItemSelected="recentlyViewItemSelected" Margin="-7">
                 <ListView.ItemTemplate>

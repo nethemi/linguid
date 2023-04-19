@@ -26,8 +26,8 @@ namespace linguid.Views.ContentMainPage
             await App.Database.CreateMeaning();
             var userLogin = Thread.CurrentPrincipal.Identity.Name;
 
-                foreach (var user in await App.Database.GetUserAsync())
-                {
+            foreach (var user in await App.Database.GetUserAsync())
+            {
                 if (userLogin == user.UserLogin)
                 {
                     var history = (await App.Database.GetHistoryWithChildren()).Where(z => z.fkUser == user.UserID).OrderByDescending(x => x.Date);
@@ -136,6 +136,30 @@ namespace linguid.Views.ContentMainPage
             recentlyViewed.IsVisible = true;
             Meaning selected = (Meaning)e.SelectedItem;
             await Navigation.PushAsync(new WordPage(selected));
+        }
+
+        private async void recentlyViewedClicked(object sender, EventArgs e)
+        {
+            var result = await DisplayAlert("Очистить сторию", $"Вы точно хотите очистить историю?", "Да", "Нет");
+            if (result)
+            {
+                var userLogin = Thread.CurrentPrincipal.Identity.Name;
+                var history = await App.Database.GetHistoryAsync();
+                foreach (var user in await App.Database.GetUserAsync())
+                {
+                    if (userLogin == user.UserLogin)
+                    {
+                        foreach (var item in history)
+                        {
+                            if (item.fkUser == user.UserID)
+                            {
+                                await App.Database.DeleteHistoryAsync(item);
+                                OnAppearing();
+                            }
+                        }
+                    }
+                }
+            }
         }
     }
 }
