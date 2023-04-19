@@ -19,6 +19,8 @@ namespace linguid.Views.ContentMainPage
         private int index = 0;
         private List<Meaning> listMeans = new List<Meaning>();
         private List<int> indexListMeans;
+        private List<Meaning> forLastIndexListMeans = new List<Meaning>();
+        private int countFalseWords, countTrueWords = 0;
         public StartLessonPage(Category selected)
         {
             InitializeComponent();
@@ -55,6 +57,11 @@ namespace linguid.Views.ContentMainPage
                 }
             }
 
+            foreach (var item in listMeans)
+            {
+                forLastIndexListMeans.Add(item);
+            }
+
             base.OnAppearing();
         }
 
@@ -64,42 +71,7 @@ namespace linguid.Views.ContentMainPage
             await Navigation.PushAsync(new WordPage(meaning));
         }
 
-        private void RandomTranscriptionBtn(ref List<int> indexListMeans, ref List<Meaning> listMeans)
-        {
-            Random rnd = new Random();
-            int randIndex = 0;
-            int randomBtn = rnd.Next(1, 4);
-            if (index < listMeans.Count()-1)
-            {
-                switch (randomBtn)
-                {
-                    case 1:
-                        translate_one.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
-                        randIndex = rnd.Next(0, indexListMeans.Count);
-                        translate_two.Text = listMeans.Where(x => randIndex != index).ElementAt(randIndex).dictionaryRu.ItemRu;
-                        randIndex = rnd.Next(0, indexListMeans.Count);
-                        translate_three.Text = listMeans.Where(x => randIndex != index).ElementAt(randIndex).dictionaryRu.ItemRu;
-                        break;
-                    case 2:
-                        randIndex = rnd.Next(0, indexListMeans.Count);
-                        translate_one.Text = listMeans.Where(x => randIndex != index).ElementAt(randIndex).dictionaryRu.ItemRu;
-                        translate_two.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
-                        randIndex = rnd.Next(0, indexListMeans.Count);
-                        translate_three.Text = listMeans.Where(x => randIndex != index).ElementAt(randIndex).dictionaryRu.ItemRu;
-                        break;
-                    case 3:
-                        randIndex = rnd.Next(0, indexListMeans.Count);
-                        translate_one.Text = listMeans.Where(x => randIndex != index).ElementAt(randIndex).dictionaryRu.ItemRu;
-                        randIndex = rnd.Next(0, indexListMeans.Count);
-                        translate_two.Text = listMeans.Where(x => randIndex != index).ElementAt(randIndex).dictionaryRu.ItemRu;
-                        translate_three.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
-                        break;
-                }
-            }
-            else index = rnd.Next(0, indexListMeans.Count);
-
-        }
-        private void RandomWords(ref List<int> indexListMeans, ref List<Meaning> listMeans)
+        private void RandomWords(ref List<Meaning> listMeans)
         {
             indexListMeans = new List<int>();
             for (int i = 0; i < listMeans.Count; i++)
@@ -109,21 +81,79 @@ namespace linguid.Views.ContentMainPage
 
             Random rnd = new Random();
 
-            if(listMeans.Count == 0)
+            if (listMeans.Count == 1)
             {
-                lessonCompleted.IsVisible = true;
-            }
-
-            index = rnd.Next(0, indexListMeans.Count);
-            if (indexListMeans.Contains(index))
-            {
+                index = 0;
                 word.Text = listMeans.ElementAt(index).dictionary.Item;
                 transcription.Text = listMeans.ElementAt(index).transcription.TranscriptionItem;
 
 
-                RandomTranscriptionBtn(ref indexListMeans, ref listMeans);
+                int randIndex = 0;
+                int randomBtn = rnd.Next(1, 4);
+                switch (randomBtn)
+                {
+                    case 1:
+                        translate_one.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
+                        randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
+                        translate_two.Text = forLastIndexListMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                        randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
+                        translate_three.Text = forLastIndexListMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                        break;
+                    case 2:
+                        randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
+                        translate_one.Text = forLastIndexListMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                        translate_two.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
+                        randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
+                        translate_three.Text = forLastIndexListMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                        break;
+                    case 3:
+                        randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
+                        translate_one.Text = forLastIndexListMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                        randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
+                        translate_two.Text = forLastIndexListMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                        translate_three.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
+                        break;
+                }
             }
-            else index = rnd.Next(0, indexListMeans.Count);
+
+            else
+            {
+                if (listMeans.ElementAt(index) != null)
+                {
+                    word.Text = listMeans.ElementAt(index).dictionary.Item;
+                    transcription.Text = listMeans.ElementAt(index).transcription.TranscriptionItem;
+
+                    int randIndex = 0;
+                    int randomBtn = rnd.Next(1, 4);
+                    switch (randomBtn)
+                    {
+                        case 1:
+                            translate_one.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
+                            randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
+                            translate_two.Text = listMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                            randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
+                            translate_three.Text = listMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                            break;
+                        case 2:
+                            randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
+                            translate_one.Text = listMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                            translate_two.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
+                            randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
+                            translate_three.Text = listMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                            break;
+                        case 3:
+                            randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
+                            translate_one.Text = listMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                            randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
+                            translate_two.Text = listMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                            translate_three.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
+                            break;
+                    }
+                }
+                else RandomWords(ref listMeans);
+            }
+
+
         }
 
         private void StartLessonBtnClicked(object sender, EventArgs e)
@@ -131,43 +161,14 @@ namespace linguid.Views.ContentMainPage
             dictionaryView.IsVisible = false;
             startLessonBtn.IsVisible = false;
             lesson.IsVisible = false;
-            lessonContent.IsVisible = true;
 
+            lessonContent.IsVisible = true;
             translate_one.IsEnabled = true;
             translate_two.IsEnabled = true;
             translate_three.IsEnabled = true;
 
 
-            RandomWords(ref indexListMeans, ref listMeans);
-            
-
-            //if (translate_one.IsChecked == true)
-            //{
-            //    if (listMeans.ElementAt(index).dictionaryRu.ItemRu == translate_one.Content)
-            //    {
-            //        translate_one.BackgroundColor = Color.Green;
-            //    }
-            //    else translate_one.BackgroundColor = Color.Red;
-            //}
-
-
-            //if (translate_two.IsPressed == true)
-            //{
-            //    if (listMeans.Where(x => x.dictionaryRu.ItemRu == translate_two.Text).First() != null)
-            //    {
-            //        translate_two.BackgroundColor = Color.Green;
-            //    }
-            //    else translate_two.BackgroundColor = Color.Red;
-            //}
-            //if (translate_three.IsPressed == true)
-            //{
-            //    if (listMeans.Where(x => x.dictionaryRu.ItemRu == translate_three.Text).First() != null)
-            //    {
-            //        translate_three.BackgroundColor = Color.Green;
-            //    }
-            //    else translate_three.BackgroundColor = Color.Red;
-            //}
-
+            RandomWords(ref listMeans);
 
         }
         private async void TranslateOneClicked(object sender, EventArgs e)
@@ -177,20 +178,50 @@ namespace linguid.Views.ContentMainPage
             if (listMeans.ElementAt(index).dictionaryRu.ItemRu == translate_one.Text)
             {
                 translate_one.Background = Color.LightGreen;
+                countTrueWords++;
             }
-            else translate_one.Background = Color.Red;
+            else
+            {
+                translate_one.Background = Color.Red;
+                countFalseWords++;
+            }
 
 
             Random rnd = new Random();
 
             listMeans.RemoveAt(index);
-            indexListMeans.RemoveAt(index);
-            index = rnd.Next(0, indexListMeans.Count);
+
             await Task.Delay(1000);
             translate_two.IsEnabled = true;
             translate_three.IsEnabled = true;
             translate_one.Background = Color.FromRgb(241, 243, 244);
-            RandomWords(ref indexListMeans, ref listMeans);
+            if (listMeans.Count == 0)
+            {
+                lessonContent.IsVisible = false;
+                translate_one.IsEnabled = false;
+                translate_two.IsEnabled = false;
+                translate_three.IsEnabled = false;
+                if(countFalseWords <= 1)
+                {
+                    endLesson.IsVisible = true;
+                    resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
+                    resultMessage.Text = "Отлично";
+                }
+                if(countFalseWords >=1 && countFalseWords <= 4)
+                {
+                    endLesson.IsVisible = true;
+                    resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
+                    resultMessage.Text = "Хорошо";
+                }   
+                if(countFalseWords >=5)
+                {
+                    endLesson.IsVisible = true;
+                    resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
+                    resultMessage.Text = "Повторите слова и попробуйте снова";
+                }
+            }
+            else
+                RandomWords(ref listMeans);
         }
 
         private async void TranslateTwoClicked(object sender, EventArgs e)
@@ -200,18 +231,48 @@ namespace linguid.Views.ContentMainPage
             if (listMeans.ElementAt(index).dictionaryRu.ItemRu == translate_two.Text)
             {
                 translate_two.Background = Color.LightGreen;
+                countTrueWords++;
             }
-            else translate_two.Background = Color.Red;
+            else
+            {
+                translate_two.Background = Color.Red;
+                countFalseWords++;
+            }
             Random rnd = new Random();
 
             listMeans.RemoveAt(index);
-            indexListMeans.RemoveAt(index);
-            index = rnd.Next(0, indexListMeans.Count);
+
             await Task.Delay(1000);
             translate_one.IsEnabled = true;
             translate_three.IsEnabled = true;
             translate_two.Background = Color.FromRgb(241, 243, 244);
-            RandomWords(ref indexListMeans, ref listMeans);
+            if (listMeans.Count == 0)
+            {
+                lessonContent.IsVisible = false;
+                translate_one.IsEnabled = false;
+                translate_two.IsEnabled = false;
+                translate_three.IsEnabled = false;
+                if (countFalseWords <= 1)
+                {
+                    endLesson.IsVisible = true;
+                    resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
+                    resultMessage.Text = "Отлично";
+                }
+                if (countFalseWords >= 1 && countFalseWords <= 4)
+                {
+                    endLesson.IsVisible = true;
+                    resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
+                    resultMessage.Text = "Хорошо";
+                }
+                if (countFalseWords >= 5)
+                {
+                    endLesson.IsVisible = true;
+                    resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
+                    resultMessage.Text = "Повторите слова и попробуйте снова";
+                }
+            }
+            else
+                RandomWords(ref listMeans);
         }
 
         private async void TranslateThreeClicked(object sender, EventArgs e)
@@ -221,19 +282,49 @@ namespace linguid.Views.ContentMainPage
             if (listMeans.ElementAt(index).dictionaryRu.ItemRu == translate_three.Text)
             {
                 translate_three.Background = Color.LightGreen;
+                countTrueWords++;
             }
-            else translate_three.Background = Color.Red;
+            else
+            {
+                translate_three.Background = Color.Red;
+                countFalseWords++;
+            }
 
             Random rnd = new Random();
 
             listMeans.RemoveAt(index);
-            indexListMeans.RemoveAt(index);
-            index = rnd.Next(0, indexListMeans.Count);
+
             await Task.Delay(2000);
             translate_two.IsEnabled = true;
             translate_one.IsEnabled = true;
             translate_three.Background = Color.FromRgb(241, 243, 244);
-            RandomWords(ref indexListMeans, ref listMeans);
+            if (listMeans.Count == 0)
+            {
+                lessonContent.IsVisible = false;
+                translate_one.IsEnabled = false;
+                translate_two.IsEnabled = false;
+                translate_three.IsEnabled = false;
+                if (countFalseWords <= 1)
+                {
+                    endLesson.IsVisible = true;
+                    resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
+                    resultMessage.Text = "Отлично";
+                }
+                if (countFalseWords >= 1 && countFalseWords <= 4)
+                {
+                    endLesson.IsVisible = true;
+                    resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
+                    resultMessage.Text = "Хорошо";
+                }
+                if (countFalseWords >= 5)
+                {
+                    endLesson.IsVisible = true;
+                    resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
+                    resultMessage.Text = "Повторите слова и попробуйте снова";
+                }
+            }
+            else
+                RandomWords(ref listMeans);
         }
     }
 }

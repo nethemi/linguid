@@ -11,9 +11,16 @@
                          xct:ShadowEffect.OffsetY="0"   
                          xct:ShadowEffect.Radius="1">
 
+            <StackLayout x:Name="endLesson" IsVisible="false">
+                <Label Style="{StaticResource titleTxt}" Text="УРОК ПРОЙДЕН" HorizontalOptions="Center" FontSize="40" Margin="0,50,0,0"/>
+                <Label Style="{StaticResource titleTxt}"  Text="Результат:" HorizontalOptions="Center" FontSize="20" Margin="0,50,0,0"/>
+                <Label Style="{StaticResource titleTxt}"  HorizontalOptions="Center" x:Name="resultScore" FontSize="20" Margin="0,50,0,0"/>
+                <Label Style="{StaticResource titleTxt}" HorizontalOptions="Center" x:Name="resultMessage" FontSize="20" Margin="0,50,0,0"/>
+
+            </StackLayout>
+
             <StackLayout Orientation="Vertical" Padding="0,10,0,0" x:Name="lessonContent" IsVisible="false">
 
-                <Label Style="{StaticResource titleTxt}" Text="УРОК ПРОЙДЕН" HorizontalOptions="Center" x:Name="lessonCompleted" FontSize="40" IsVisible="false"/>
 
                 <Label Style="{StaticResource titleTxt}" Text="{Binding dictionary.Item}" HorizontalOptions="Center" x:Name="word" FontSize="40" />
                 <Label Style="{StaticResource titleTxt}" Text="{Binding transcription.TranscriptionItem}" HorizontalOptions="Center" x:Name="transcription" FontSize="20"/>
