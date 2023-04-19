@@ -18,44 +18,45 @@ namespace linguid.Views
         {
             InitializeComponent();
             var userLogin = Thread.CurrentPrincipal.Identity.Name;
-            if (userLogin == "")
-            {
-                favoritePage.IsEnabled = false;
-                lessonsPage.IsEnabled = false;
-            }
-            else
-            {
-                IsAdmin(userLogin);
-            }
+            IsAdmin(userLogin);
+
 
             GetLanguage();
         }
 
         private async void IsAdmin(string userLogin)
         {
-            foreach (var user in await App.Database.GetUserAsync())
+            if (userLogin == "")
             {
-                int idUser;
-                if (user.UserLogin == userLogin)
+                favoritePage.IsEnabled = false;
+                lessonsPage.IsEnabled = false;
+                await dictionaryPage.PushAsync(new DictionaryPage());
+            }
+            else
+            {
+                foreach (var user in await App.Database.GetUserAsync())
                 {
-                    idUser = user.UserID;
-                    foreach (var ubr in await App.Database.GetUbRAsync())
+                    int idUser;
+                    if (user.UserLogin == userLogin)
                     {
-                        if (ubr.fkUser == idUser)
+                        idUser = user.UserID;
+                        foreach (var ubr in await App.Database.GetUbRAsync())
                         {
-                            if (ubr.fkRole == 1)
+                            if (ubr.fkUser == idUser)
                             {
-                                await dictionaryPage.PushAsync(new DictionaryAdminPage());
-                            }
-                            else
-                            {
-                                await dictionaryPage.PushAsync(new DictionaryPage());
+                                if (ubr.fkRole == 1)
+                                {
+                                    await dictionaryPage.PushAsync(new DictionaryAdminPage());
+                                }
+                                else
+                                {
+                                    await dictionaryPage.PushAsync(new DictionaryPage());
+                                }
                             }
                         }
                     }
                 }
-            }
-            
+            }  
         }
 
         public async void GetLanguage()

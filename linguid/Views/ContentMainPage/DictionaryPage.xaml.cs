@@ -52,7 +52,7 @@ namespace linguid.Views.ContentMainPage
                     }
                 }
             }
-            else recentlyViewed.Text = "Войите, чтобы иметь больше возможностей";
+            else recentlyViewed.Text = "Войдите, чтобы иметь больше возможностей";
             base.OnAppearing();
         }
 

@@ -14,7 +14,7 @@
                      xct:ShadowEffect.Color="Black"
                      xct:ShadowEffect.OffsetY="0"   
                      xct:ShadowEffect.Radius="1">
-            
+
             <Frame Style="{StaticResource loginBoxes}" CornerRadius="15" WidthRequest="500" HeightRequest="60">
                 <SearchBar Style="{StaticResource searchBox}" TextChanged="SearchBarTextChanged" x:Name="searchBar"/>
             </Frame>
@@ -41,7 +41,7 @@
                                                 <RowDefinition Height="*"/>
                                             </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="150"/>
+                                                <ColumnDefinition Width="200"/>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>
@@ -79,7 +79,7 @@
                                                 <RowDefinition Height="*"/>
                                             </Grid.RowDefinitions>
                                             <Grid.ColumnDefinitions>
-                                                <ColumnDefinition Width="150"/>
+                                                <ColumnDefinition Width="200"/>
                                                 <ColumnDefinition Width="*"/>
                                                 <ColumnDefinition Width="*"/>
                                             </Grid.ColumnDefinitions>

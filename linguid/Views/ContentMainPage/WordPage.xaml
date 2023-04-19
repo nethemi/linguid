@@ -12,8 +12,8 @@
                          x:Name="meaningInfo">
 
             <Label Style="{StaticResource titleTxt}" Text="{Binding dictionary.Item}" HorizontalOptions="Center" x:Name="item" FontSize="50"/>
-            <Label Style="{StaticResource normalTxt}" Text="{Binding transcription.TranscriptionItem}" FontSize="30" x:Name="transcription"/>
-            <Label Style="{StaticResource titleTxt}" Text="{Binding dictionaryRu.ItemRu}" FontSize="40" x:Name="itemRu"/>
+            <Label Style="{StaticResource normalTxt}" Text="{Binding transcription.TranscriptionItem}" FontSize="20" x:Name="transcription"/>
+            <Label Style="{StaticResource titleTxt}" Text="{Binding dictionaryRu.ItemRu}" FontSize="30" x:Name="itemRu"/>
 
             <Button Style="{StaticResource choiceBtn}"
                     x:Name="addFav"
