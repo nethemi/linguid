@@ -23,12 +23,27 @@ namespace linguid.Views.ContentMainPage
             var userLogin = Thread.CurrentPrincipal.Identity.Name;
             foreach (var user in await App.Database.GetUserAsync())
             {
+                userPass.HasError = false;
+                checkPass.HasError = false;
                 if (user.UserLogin == userLogin && userPass.Text == user.UserPassword && checkPass.Text == newPass.Text)
                 {
                     user.UserPassword= newPass.Text;
                     await App.Database.SaveUserAsync(user);
                     await DisplayAlert("Изменение пароля", $"Пароль успешно изменен!", "ОК");
                     await Navigation.PushAsync(new ProfilePage());
+                }
+                else
+                {
+                    if (userPass.Text != user.UserPassword)
+                    {
+                        userPass.HasError = true;
+                        userPass.ErrorText = "Непраивльный пароль!";
+                    }
+                    if (checkPass.Text != newPass.Text)
+                    {
+                        checkPass.HasError= true;
+                        checkPass.ErrorText = "Пароли не совпадают!";
+                    }
                 }
             }
         }
