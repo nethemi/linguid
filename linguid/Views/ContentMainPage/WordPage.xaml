@@ -11,7 +11,7 @@
         <StackLayout Orientation="Vertical"
                          x:Name="meaningInfo">
 
-            <Label Style="{StaticResource titleTxt}" Text="{Binding dictionary.Item}" HorizontalOptions="Center" x:Name="item" FontSize="50"/>
+            <Label Style="{StaticResource titleTxt}" Text="{Binding dictionary.Item}" HorizontalOptions="Center" x:Name="item" FontSize="40"/>
             <Label Style="{StaticResource normalTxt}" Text="{Binding transcription.TranscriptionItem}" FontSize="20" x:Name="transcription"/>
             <Label Style="{StaticResource titleTxt}" Text="{Binding dictionaryRu.ItemRu}" FontSize="30" x:Name="itemRu"/>
 

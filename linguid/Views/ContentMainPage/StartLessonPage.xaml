@@ -29,7 +29,7 @@
                 <Button Style="{StaticResource mainBtn}" HorizontalOptions="Center" Clicked="ReturnToLessonsClick" FontSize="13" Margin="0,50,0,0" Text="Назад к урокам"/>
             </StackLayout>
 
-            <StackLayout Orientation="Vertical" Padding="0,10,0,0" x:Name="lessonContent" IsVisible="false">
+            <StackLayout Orientation="Vertical" Padding="0,70,0,0" x:Name="lessonContent" IsVisible="false">
 
 
                 <Label Style="{StaticResource titleTxt}" Text="{Binding dictionary.Item}" HorizontalOptions="Center" x:Name="word" FontSize="40" />

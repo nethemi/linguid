@@ -80,6 +80,7 @@ namespace linguid.Views.ContentMainPage
             }
 
             Random rnd = new Random();
+            index = rnd.Next(indexListMeans.First(), indexListMeans.Last());
 
             if (listMeans.Count == 1)
             {
@@ -118,12 +119,14 @@ namespace linguid.Views.ContentMainPage
 
             else
             {
+
                 if (listMeans.ElementAt(index) != null)
                 {
+
                     word.Text = listMeans.ElementAt(index).dictionary.Item;
                     transcription.Text = listMeans.ElementAt(index).transcription.TranscriptionItem;
 
-                    int randIndex = 0;
+                    int randIndex;
                     int randomBtn = rnd.Next(1, 4);
                     switch (randomBtn)
                     {
@@ -212,7 +215,7 @@ namespace linguid.Views.ContentMainPage
                     resultMessage.Text = "Отлично";
                     resultScoreFrame.BackgroundColor = Color.FromHex("98D8AA");
                 }
-                if(countFalseWords >=1 && countFalseWords <= 4)
+                if(countFalseWords >=2 && countFalseWords <= 4)
                 {
                     endLesson.IsVisible = true;
                     resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
@@ -224,8 +227,25 @@ namespace linguid.Views.ContentMainPage
                     endLesson.IsVisible = true;
                     resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
                     resultMessage.Text = "Повторите слова и попробуйте снова";
-                    resultScoreFrame.BackgroundColor = Color.FromHex("FF6D60");
-                    
+                    resultScoreFrame.BackgroundColor = Color.FromHex("FF6D60");  
+                }
+                HistoryLesson lesson = new HistoryLesson();
+                var userLogin = Thread.CurrentPrincipal.Identity.Name;
+                foreach (var user in await App.Database.GetUserAsync())
+                {
+                    if (userLogin == user.UserLogin)
+                    {
+                        foreach (var MbC in await App.Database.GetMbCAsync())
+                        {
+                            if (MbC.fkCategory == _category.CategoryID)
+                            {
+                                lesson.fkUser = user.UserID;
+                                lesson.fkMbC = MbC.MbCID;
+                                lesson.Date = DateTime.Now;
+                                await App.Database.SaveLessonAsync(lesson);
+                            }
+                        }
+                    }
                 }
             }
             else
@@ -267,7 +287,7 @@ namespace linguid.Views.ContentMainPage
                     resultMessage.Text = "Отлично";
                     resultScoreFrame.BackgroundColor = Color.FromHex("98D8AA");
                 }
-                if (countFalseWords >= 1 && countFalseWords <= 4)
+                if (countFalseWords >= 2 && countFalseWords <= 4)
                 {
                     endLesson.IsVisible = true;
                     resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
@@ -341,7 +361,7 @@ namespace linguid.Views.ContentMainPage
                     resultMessage.Text = "Отлично";
                     resultScoreFrame.BackgroundColor = Color.FromHex("98D8AA");
                 }
-                if (countFalseWords >= 1 && countFalseWords <= 4)
+                if (countFalseWords >= 2 && countFalseWords <= 4)
                 {
                     endLesson.IsVisible = true;
                     resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
@@ -354,6 +374,25 @@ namespace linguid.Views.ContentMainPage
                     resultScore.Text = countTrueWords + "/" + forLastIndexListMeans.Count;
                     resultMessage.Text = "Повторите слова и попробуйте снова";
                     resultScoreFrame.BackgroundColor = Color.FromHex("FF6D60");
+                }
+
+                HistoryLesson lesson = new HistoryLesson();
+                var userLogin = Thread.CurrentPrincipal.Identity.Name;
+                foreach (var user in await App.Database.GetUserAsync())
+                {
+                    if (userLogin == user.UserLogin)
+                    {
+                        foreach (var MbC in await App.Database.GetMbCAsync())
+                        {
+                            if (MbC.fkCategory == _category.CategoryID)
+                            {
+                                lesson.fkUser = user.UserID;
+                                lesson.fkMbC = MbC.MbCID;
+                                lesson.Date = DateTime.Now;
+                                await App.Database.SaveLessonAsync(lesson);
+                            }
+                        }
+                    }
                 }
             }
             else
