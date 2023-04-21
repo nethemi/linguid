@@ -21,6 +21,7 @@ namespace linguid.Views.ContentMainPage
         private List<int> indexListMeans;
         private List<Meaning> forLastIndexListMeans = new List<Meaning>();
         private int countFalseWords, countTrueWords = 0;
+
         public StartLessonPage(Category selected)
         {
             InitializeComponent();
@@ -71,16 +72,81 @@ namespace linguid.Views.ContentMainPage
             await Navigation.PushAsync(new WordPage(meaning));
         }
 
+        private void SearchIndex(int index)
+        {
+            Random rnd = new Random();
+            int randomBtn = rnd.Next(1, 4);
+
+            int randomNumberOne = rnd.Next(0, indexListMeans.Count);
+            int randomNumberTwo = rnd.Next(0, indexListMeans.Count);
+            int numOne = indexListMeans.ElementAt(randomNumberOne);
+            int numTwo = indexListMeans.ElementAt(randomNumberTwo);
+            switch (randomBtn)
+            {
+                case 1:
+                    if (numOne != index && numTwo != index && numTwo != numOne)
+                    {
+                        if (listMeans.ElementAt(index).dictionaryRu.ItemRu != forLastIndexListMeans.ElementAt(numOne).dictionaryRu.ItemRu &&
+                           listMeans.ElementAt(index).dictionaryRu.ItemRu != forLastIndexListMeans.ElementAt(numTwo).dictionaryRu.ItemRu)
+                        {
+                            translate_one.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
+                            translate_two.Text = forLastIndexListMeans.ElementAt(numOne).dictionaryRu.ItemRu;
+                            translate_three.Text = forLastIndexListMeans.ElementAt(numTwo).dictionaryRu.ItemRu;
+                        }
+                        else SearchIndex(index);
+                    }
+                    else
+                        SearchIndex(index);
+                    break;
+                case 2:
+                    if (numOne != index && numTwo != index && numTwo != numOne)
+                    {
+                        if (listMeans.ElementAt(index).dictionaryRu.ItemRu != forLastIndexListMeans.ElementAt(numOne).dictionaryRu.ItemRu &&
+                           listMeans.ElementAt(index).dictionaryRu.ItemRu != forLastIndexListMeans.ElementAt(numTwo).dictionaryRu.ItemRu)
+                        {
+                            translate_two.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
+                            translate_one.Text = forLastIndexListMeans.ElementAt(numOne).dictionaryRu.ItemRu;
+                            translate_three.Text = forLastIndexListMeans.ElementAt(numTwo).dictionaryRu.ItemRu;
+                        }
+                        else SearchIndex(index);
+                    }
+                    else SearchIndex(index);
+                    break;
+                case 3:
+                    if (numOne != index && numTwo != index && numTwo != numOne)
+                    {
+                        if (listMeans.ElementAt(index).dictionaryRu.ItemRu != forLastIndexListMeans.ElementAt(numOne).dictionaryRu.ItemRu &&
+                           listMeans.ElementAt(index).dictionaryRu.ItemRu != forLastIndexListMeans.ElementAt(numTwo).dictionaryRu.ItemRu)
+                        {
+                            translate_three.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
+                            translate_one.Text = forLastIndexListMeans.ElementAt(numOne).dictionaryRu.ItemRu;
+                            translate_two.Text = forLastIndexListMeans.ElementAt(numTwo).dictionaryRu.ItemRu;
+                        }
+                        else SearchIndex(index);
+                    }
+                    else SearchIndex(index);
+                    break;
+            }
+
+        }
+
         private void RandomWords(ref List<Meaning> listMeans)
         {
-            indexListMeans = new List<int>();
+             List<int> translateList = new List<int>();
+             indexListMeans = new List<int>();
             for (int i = 0; i < listMeans.Count; i++)
             {
                 indexListMeans.Add(i);
             }
 
+
             Random rnd = new Random();
             index = rnd.Next(indexListMeans.First(), indexListMeans.Last());
+
+            for (int i = 0; i < forLastIndexListMeans.Count; i++)
+            {
+                 translateList.Add(i);
+            }
 
             if (listMeans.Count == 1)
             {
@@ -89,34 +155,53 @@ namespace linguid.Views.ContentMainPage
                 transcription.Text = listMeans.ElementAt(index).transcription.TranscriptionItem;
 
 
-                int randIndex = 0;
                 int randomBtn = rnd.Next(1, 4);
                 switch (randomBtn)
                 {
                     case 1:
                         translate_one.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
-                        randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
-                        translate_two.Text = forLastIndexListMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
-                        randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
-                        translate_three.Text = forLastIndexListMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                        translate_two.Text = forLastIndexListMeans.ElementAt(translateList.First()).dictionaryRu.ItemRu;
+                        translate_three.Text = forLastIndexListMeans.ElementAt(translateList.Last() - 2).dictionaryRu.ItemRu;
                         break;
                     case 2:
-                        randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
-                        translate_one.Text = forLastIndexListMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                        translate_one.Text = forLastIndexListMeans.ElementAt(translateList.First()).dictionaryRu.ItemRu;
                         translate_two.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
-                        randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
-                        translate_three.Text = forLastIndexListMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                        translate_three.Text = forLastIndexListMeans.ElementAt(translateList.Last() - 2).dictionaryRu.ItemRu;
                         break;
                     case 3:
-                        randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
-                        translate_one.Text = forLastIndexListMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
-                        randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
-                        translate_two.Text = forLastIndexListMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
+                        translate_one.Text = forLastIndexListMeans.ElementAt(translateList.First()).dictionaryRu.ItemRu;
+                        translate_two.Text = forLastIndexListMeans.ElementAt(translateList.Last() - 2).dictionaryRu.ItemRu;
                         translate_three.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
                         break;
                 }
             }
+            else if (listMeans.Count == 2)
+            {
+                index = 1;
+                word.Text = listMeans.ElementAt(index).dictionary.Item;
+                transcription.Text = listMeans.ElementAt(index).transcription.TranscriptionItem;
 
+
+                int randomBtn = rnd.Next(1, 4);
+                switch (randomBtn)
+                {
+                    case 1:
+                        translate_one.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
+                        translate_two.Text = forLastIndexListMeans.ElementAt(translateList.First() + 1).dictionaryRu.ItemRu;
+                        translate_three.Text = forLastIndexListMeans.ElementAt(translateList.Last() - 1).dictionaryRu.ItemRu;
+                        break;
+                    case 2:
+                        translate_one.Text = forLastIndexListMeans.ElementAt(translateList.First() + 1).dictionaryRu.ItemRu;
+                        translate_two.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
+                        translate_three.Text = forLastIndexListMeans.ElementAt(translateList.Last() - 1).dictionaryRu.ItemRu;
+                        break;
+                    case 3:
+                        translate_one.Text = forLastIndexListMeans.ElementAt(translateList.First() + 1).dictionaryRu.ItemRu;
+                        translate_two.Text = forLastIndexListMeans.ElementAt(translateList.Last() - 1).dictionaryRu.ItemRu;
+                        translate_three.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
+                        break;
+                }
+            }
             else
             {
 
@@ -126,32 +211,7 @@ namespace linguid.Views.ContentMainPage
                     word.Text = listMeans.ElementAt(index).dictionary.Item;
                     transcription.Text = listMeans.ElementAt(index).transcription.TranscriptionItem;
 
-                    int randIndex;
-                    int randomBtn = rnd.Next(1, 4);
-                    switch (randomBtn)
-                    {
-                        case 1:
-                            translate_one.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
-                            randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
-                            translate_two.Text = listMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
-                            randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
-                            translate_three.Text = listMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
-                            break;
-                        case 2:
-                            randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
-                            translate_one.Text = listMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
-                            translate_two.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
-                            randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
-                            translate_three.Text = listMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
-                            break;
-                        case 3:
-                            randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
-                            translate_one.Text = listMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
-                            randIndex = rnd.Next(indexListMeans.First(), indexListMeans.Last());
-                            translate_two.Text = listMeans.ElementAt(randIndex).dictionaryRu.ItemRu;
-                            translate_three.Text = listMeans.ElementAt(index).dictionaryRu.ItemRu;
-                            break;
-                    }
+                    SearchIndex(index);
                 }
                 else RandomWords(ref listMeans);
             }
