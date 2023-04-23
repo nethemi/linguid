@@ -20,7 +20,7 @@
             </Frame>
 
             <Button Style="{StaticResource regBtn}" Text="Недавно просмотренные (нажмите,чтобы очистить)" HorizontalOptions="StartAndExpand" 
-                    Padding="-10,5,80,10" x:Name="recentlyViewed" Clicked="recentlyViewedClicked" FontSize="16"/>
+                    Padding="-10,5,80,10" x:Name="recentlyViewed" Clicked="recentlyViewedClicked" FontSize="14"/>
 
             <ListView x:Name="recentlyView" RowHeight="150" ItemsSource="{Binding}" ItemSelected="recentlyViewItemSelected" Margin="-7">
                 <ListView.ItemTemplate>

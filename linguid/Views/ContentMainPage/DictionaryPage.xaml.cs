@@ -55,7 +55,7 @@ namespace linguid.Views.ContentMainPage
             else
             { 
                 recentlyViewed.IsEnabled = false;
-                recentlyViewed.Text = "Войдите, чтобы иметь больше возможностей"; 
+                recentlyViewed.Text = "Войдите, чтобы иметь больше возможностей";
             }
             base.OnAppearing();
         }

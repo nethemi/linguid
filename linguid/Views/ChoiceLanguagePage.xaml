@@ -22,26 +22,26 @@
         <StackLayout Orientation="Vertical"
                          HorizontalOptions="Center"
                          VerticalOptions="Center"
-                         Margin="20">
+                         Margin="10">
 
             <Button Style="{StaticResource choiceBtn}"
                         ContentLayout="Top"
                         ImageSource="{local:ImageResource linguid.Images.guard.png}"
-                        Padding="40"  
+                        Padding="30"  
                         Text="Английский"
                     Clicked="EngClicked"/>
 
             <Button Style="{StaticResource choiceBtn}"
                         ImageSource="{local:ImageResource linguid.Images.panda.png}"
                         Text="Китайский"
-                        Padding="40"
+                        Padding="30"
                         ContentLayout="Top"
                     Clicked="ChinaClicked"/>
 
             <Button Style="{StaticResource choiceBtn}"
                         ImageSource="{local:ImageResource linguid.Images.japanDolls.png}"
                         Text="Японский"
-                        Padding="40"  
+                        Padding="30"  
                         ContentLayout="Top"
                     Clicked="JpClicked"/>
 

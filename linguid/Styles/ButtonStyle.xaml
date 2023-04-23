@@ -6,7 +6,7 @@
         <Setter Property="FontSize" Value="14"/>
         <Setter Property="FontFamily" Value="Roboto"/>
         <Setter Property="WidthRequest" Value="256"/>
-        <Setter Property="HeightRequest" Value="36"/>
+        <Setter Property="HeightRequest" Value="42"/>
         <Setter Property="Background" Value="Transparent"/>
         <Setter Property="TextColor" Value="#666666"/>
         <Setter Property="BorderColor" Value="#E5E5E5"/>

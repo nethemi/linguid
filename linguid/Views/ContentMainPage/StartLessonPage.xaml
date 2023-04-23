@@ -17,7 +17,7 @@
                 <Frame 
                        x:Name="resultScoreFrame"
                        Opacity="0.7"
-                       WidthRequest="60"
+                       WidthRequest="100"
                        Margin="0,60,0,0" 
                        CornerRadius="16"
                        HorizontalOptions="Center"
