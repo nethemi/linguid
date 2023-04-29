@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using System.Data.Common;
 using System.Linq;
 using System.Reflection;
 using System.Threading.Tasks;
@@ -16,6 +18,13 @@ namespace linguid
         public DatabaseAsyncRepository(string databasePath)
         {
             database = new SQLiteAsyncConnection(databasePath);
+        }
+
+        public async Task<List<Object>> GetAllTablesAsync()
+        {
+            string queryString = $"SELECT * FROM linguid WHERE type = 'table'";
+            return await database.QueryAsync<Object>(queryString)
+                                    .ConfigureAwait(false);
         }
 
         #region language

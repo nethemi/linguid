@@ -97,6 +97,18 @@
                         IsVisible="false"
                         Clicked="AddClicked"/>
 
+                <Button Style="{StaticResource choiceBtn}"
+                        xct:ShadowEffect.Color="Black"
+                        xct:ShadowEffect.OffsetY="15"   
+                        xct:ShadowEffect.Radius="5"
+                        Margin="20,5,20,5"
+                        HeightRequest="45"
+                        Text="Информация о БД"
+                        TextColor="#000000"
+                        x:Name="infoBtn"
+                        IsVisible="false"
+                        Clicked="infoBtn_Clicked"/>
+
                 <Button Style="{StaticResource mainBtn}"
                 HorizontalOptions="Center"
                 Text="Выйти"

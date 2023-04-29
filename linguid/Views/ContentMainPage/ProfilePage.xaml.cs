@@ -93,5 +93,10 @@ namespace linguid.Views.ContentMainPage
             var _navigation = Application.Current.MainPage.Navigation;
             await _navigation.PushAsync(new RegPage());
         }
+
+        private async void infoBtn_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new InfoPage());
+        }
     }
 }
