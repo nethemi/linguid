@@ -20,11 +20,9 @@ namespace linguid
             database = new SQLiteAsyncConnection(databasePath);
         }
 
-        public async Task<List<Object>> GetAllTablesAsync()
+        public async Task<List<sqlite_sequence>> GetAllTablesAsync()
         {
-            string queryString = $"SELECT * FROM linguid WHERE type = 'table'";
-            return await database.QueryAsync<Object>(queryString)
-                                    .ConfigureAwait(false);
+            return await database.Table<sqlite_sequence>().ToListAsync();
         }
 
         #region language

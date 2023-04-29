@@ -1,25 +1,39 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
              xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+              xmlns:xct="http://xamarin.com/schemas/2020/toolkit"
              x:Class="linguid.Views.ContentMainPage.InfoPage">
     <ContentPage.Content>
         <StackLayout>
             <Label Style="{StaticResource titleTxt}" x:Name="db"/>
-            <Grid>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                    <ColumnDefinition/>
-                </Grid.ColumnDefinitions>
 
-                <CollectionView x:Name="tableView" Grid.Column="0">
-                    <CollectionView.ItemTemplate>
-                        <DataTemplate>
-                            <Label Style="{StaticResource normalTxt}" />
-                        </DataTemplate>
-                    </CollectionView.ItemTemplate>
-                </CollectionView>
-            </Grid>
+
+            <CollectionView x:Name="tableView" Grid.Column="0" ItemsSource="{Binding}">
+                <CollectionView.ItemTemplate>
+                    <DataTemplate>
+                        <StackLayout Padding="10,10,10,10">
+                            <Frame HasShadow="True"
+                                   xct:ShadowEffect.Color="Black"
+                                   xct:ShadowEffect.OffsetY="0"
+                                   xct:ShadowEffect.Radius="4"
+                                   HeightRequest="40"
+                                   CornerRadius="15"
+                                   BackgroundColor="#F1F3F4">
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="150"/>
+                                        <ColumnDefinition/>
+                                        <ColumnDefinition/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <Label Style="{StaticResource gridTxt}" Text="{Binding name}" Grid.Column="0" FontSize="16"/>
+                                    <Label Style="{StaticResource gridTxt}" Text="{Binding seq}" Grid.Column="1" FontSize="16"/>
+                                </Grid>
+                            </Frame>
+                        </StackLayout>
+                    </DataTemplate>
+                </CollectionView.ItemTemplate>
+            </CollectionView>
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>

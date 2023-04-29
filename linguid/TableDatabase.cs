@@ -6,6 +6,13 @@ using System.Text;
 
 namespace linguid
 {
+    [Table("sqlite_sequence")]
+    public class sqlite_sequence
+    {
+        public string name { get; set; }
+        public int seq { get; set; }
+    }
+
     [Table("Language")]
     public class Language
     {

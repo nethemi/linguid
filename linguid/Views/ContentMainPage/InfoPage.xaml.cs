@@ -18,5 +18,11 @@ namespace linguid.Views.ContentMainPage
 
             db.Text = App.DATABASE_NAME;
         }
+
+        protected override async void OnAppearing()
+        {
+            tableView.ItemsSource = await App.database.GetAllTablesAsync();
+            base .OnAppearing();    
+        }
     }
 }

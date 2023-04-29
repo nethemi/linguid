@@ -106,7 +106,6 @@
                         Text="Информация о БД"
                         TextColor="#000000"
                         x:Name="infoBtn"
-                        IsVisible="false"
                         Clicked="infoBtn_Clicked"/>
 
                 <Button Style="{StaticResource mainBtn}"
