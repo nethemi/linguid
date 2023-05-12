@@ -1,0 +1,35 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<ContentPage xmlns="http://xamarin.com/schemas/2014/forms"
+             xmlns:x="http://schemas.microsoft.com/winfx/2009/xaml"
+             x:Class="linguid.Views.ContentMainPage.TimerPage"
+             xmlns:xct="http://xamarin.com/schemas/2020/toolkit" 
+             xmlns:sk="clr-namespace:SkiaSharp.Views.Forms;assembly=SkiaSharp.Views.Forms">
+    <ContentPage.Content>
+        <StackLayout>
+
+            <Grid>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="250"/>
+                    <RowDefinition/>
+                    <RowDefinition/>
+                </Grid.RowDefinitions>
+
+                <Grid Grid.Row="0" WidthRequest="250" Margin="50,0">
+                    <sk:SKCanvasView x:Name="canvasView" PaintSurface="canvasView_PaintSurface"/>
+                    <sk:SKCanvasView x:Name="canvasViewStart" PaintSurface="canvasViewStart_PaintSurface" IsVisible="False"/>
+                    <Frame WidthRequest="30" HeightRequest="26" HasShadow="True" BorderColor="#D7DAE6" Padding="0" HorizontalOptions="Center" VerticalOptions="Center" Margin="100,0,0,0">
+                        <Label x:Name="secondsTxt" FontSize="20" TextColor="#333436" HorizontalOptions="Center" VerticalOptions="Center"/>
+                    </Frame>
+                </Grid>
+
+
+                <Button Style="{StaticResource choiceBtn}" Grid.Row="1" Margin="50,50,50,0" HeightRequest="80" Text="Старт" Clicked="Button_Clicked" x:Name="start"/>
+                <Button Style="{StaticResource choiceBtn}" Grid.Row="2" Margin="50,50,50,0" HeightRequest="80" Text="Cтоп" Clicked="Button_Clicked_1" IsVisible="false" x:Name="stop" Background="#FF6D60"/>
+                <Button Style="{StaticResource choiceBtn}" Grid.Row="1" Margin="50,50,50,0" HeightRequest="80" Text="Остановить" Clicked="Button_Clicked_2" IsVisible="false" x:Name="pause"/>
+            </Grid>
+
+
+           
+        </StackLayout>
+    </ContentPage.Content>
+</ContentPage>

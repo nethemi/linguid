@@ -39,7 +39,7 @@
             </StackLayout>
 
             <StackLayout Orientation="Vertical"
-                         Margin="0,120,0,180"
+                         Margin="0,80,0,180"
                          x:Name="profileInfo">
 
                 <Label Style="{StaticResource titleTxt}" Text="{Binding UserName}" HorizontalOptions="Center" x:Name="userName"/>
@@ -107,6 +107,17 @@
                         TextColor="#000000"
                         x:Name="infoBtn"
                         Clicked="infoBtn_Clicked"/>
+
+                <Button Style="{StaticResource choiceBtn}"
+                        xct:ShadowEffect.Color="Black"
+                        xct:ShadowEffect.OffsetY="15"   
+                        xct:ShadowEffect.Radius="5"
+                        Margin="20,5,20,5"
+                        HeightRequest="45"
+                        Text="Таймер"
+                        TextColor="#000000"
+                        x:Name="timerBtn"
+                        Clicked="timerBtn_Clicked"/>
 
                 <Button Style="{StaticResource mainBtn}"
                 HorizontalOptions="Center"

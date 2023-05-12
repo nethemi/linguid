@@ -98,5 +98,10 @@ namespace linguid.Views.ContentMainPage
         {
             await Navigation.PushAsync(new InfoPage());
         }
+
+        private async void timerBtn_Clicked(object sender, EventArgs e)
+        {
+            await Navigation.PushAsync(new TimerPage());
+        }
     }
 }
