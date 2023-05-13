@@ -7,33 +7,54 @@
         <StackLayout>
             <Label Style="{StaticResource titleTxt}" x:Name="db"/>
 
+            <Grid HeightRequest="150" HorizontalOptions="Start">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                    <ColumnDefinition/>
+                </Grid.ColumnDefinitions>
 
-            <CollectionView x:Name="tableView" Grid.Column="0" ItemsSource="{Binding}">
-                <CollectionView.ItemTemplate>
-                    <DataTemplate>
-                        <StackLayout Padding="10,10,10,10">
-                            <Frame HasShadow="True"
-                                   xct:ShadowEffect.Color="Black"
-                                   xct:ShadowEffect.OffsetY="0"
-                                   xct:ShadowEffect.Radius="4"
-                                   HeightRequest="40"
-                                   CornerRadius="15"
-                                   BackgroundColor="#F1F3F4">
-                                <Grid>
-                                    <Grid.ColumnDefinitions>
-                                        <ColumnDefinition Width="150"/>
-                                        <ColumnDefinition/>
-                                        <ColumnDefinition/>
-                                    </Grid.ColumnDefinitions>
+                <Label Style="{StaticResource normalTxt}" Text="Название" Grid.Column="0" FontSize="16"/>
+                <Label Style="{StaticResource normalTxt}" Text="Кол-во записей" Grid.Column="1" FontSize="16"/>
+                <Label Style="{StaticResource normalTxt}" Text="Кол-во атрибутов" Grid.Column="2" FontSize="16"/>
+            </Grid>
 
-                                    <Label Style="{StaticResource gridTxt}" Text="{Binding name}" Grid.Column="0" FontSize="16"/>
-                                    <Label Style="{StaticResource gridTxt}" Text="{Binding seq}" Grid.Column="1" FontSize="16"/>
-                                </Grid>
-                            </Frame>
-                        </StackLayout>
-                    </DataTemplate>
-                </CollectionView.ItemTemplate>
-            </CollectionView>
+            <Grid>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*"/>
+                    <ColumnDefinition Width="100"/>
+                </Grid.ColumnDefinitions>
+
+
+                <CollectionView x:Name="tableView" ItemsSource="{Binding}" Grid.Column="0">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Grid>
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="150"/>
+                                    <ColumnDefinition Width="200" />
+                                </Grid.ColumnDefinitions>
+
+                                <Label Style="{StaticResource gridTxt}" Text="{Binding name}" Grid.Column="0" FontSize="16" Margin="5"/>
+                                <Label Style="{StaticResource gridTxt}" Text="{Binding seq}" Grid.Column="1" FontSize="16" Margin="5"/>
+
+                            </Grid>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+                <CollectionView x:Name="countView" ItemsSource="{Binding}" Grid.Column="1">
+                    <CollectionView.ItemTemplate>
+                        <DataTemplate>
+                            <Label Style="{StaticResource gridTxt}" Text="{Binding int}" FontSize="16" Grid.Column="1" Margin="5"/>
+                        </DataTemplate>
+                    </CollectionView.ItemTemplate>
+                </CollectionView>
+
+            </Grid>
+
+
+           
         </StackLayout>
     </ContentPage.Content>
 </ContentPage>
